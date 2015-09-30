@@ -1,0 +1,53 @@
+<nav ng-controller='NavBarCtrl' class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<img style="padding : 8px;" src="public/img/logo.png"/></li>
+		
+		<ul class="nav navbar-nav navbar-right top-nav">
+			<li  ng-if='logged'><a ng_click="logout()" href="#">Logout</a></li>
+			<li  ng-if='!logged'><a href="#/login">Login</a></li>
+		</ul>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul id="mainNav" class="nav navbar-nav side-nav" >
+				<li ng-show='logged' ng-repeat="api in nav" class="dropdown">
+					<a 	class="active" ng-if="api.group == null" ng-init="title = 'api.name'" 
+					href="#/{{api.apiObject}}"
+					ng-class="{'selected':selectedTab == api.apiObject }" 
+					ng-click="setSelectedTab(api.apiObject)">
+						{{api.name || api.apiObject}}
+					</a>
+					<a 	ng-if="api.group != null" 
+						role="button" 
+						class="dropdown-toggle" 
+
+						data-parent="#mainNav"
+						href="javascript:;"
+						data-target="#{{api.name || api.apiObject}}" 
+						data-toggle="collapse" >
+						{{api.name || api.apiObject}}
+						<span class="caret"></span>
+					</a>
+					<ul ng-if="api.group != null"  class="collapse" id="{{api.name || api.apiObject}}">
+						<li ng-repeat-start="subapi in api.group" >
+							<a href="#/{{subapi.apiObject}}"
+								ng-class="{'selected':selectedTab == subapi.apiObject }" 
+								ng-click="setSelectedTab(subapi.apiObject)">
+								{{subapi.name || subapi.apiObject}}</a>
+						</li>
+						<li ng-repeat-end ng-if="$first" class="divider"></li>
+					</ul>
+				</li>	
+			</ul>	
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+	{{$location.path()}}
+</nav>

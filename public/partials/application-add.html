@@ -1,0 +1,356 @@
+<div class="row">
+	<h1 class="col-sm-6">{{crudTitle}} {{apiname}}</h1>
+	<h2 ng-if="item.id" class="col-sm-6"> id : {{item.id}}</span></h2>
+</div>
+<form class="form-horizontal">
+
+	<!-- - - - - - - - - - -->
+	<!-- 	  STEP 1 	   -->
+	<!-- - - - - - - - - - -->
+	<div ng-if="step == 1" class="form-group">
+		<h2>Step 1 : Choose a name</h2>
+		<div class="row">
+			<label class="col-sm-2 control-label">name</label>
+			<div class="col-sm-10">
+				<input type="text"  ng-model='item.name'  class="form-control">
+			</div>	
+		</div>
+	</div>
+	<!-- - - - - - - - - - -->
+	<!-- 	END STEP 1 	   -->
+	<!-- - - - - - - - - - -->
+
+	<!-- - - - - - - - - - -->
+	<!-- 	  STEP 2 	   -->
+	<!-- - - - - - - - - - -->
+	<div ng-if="step == 2" class="row">
+		<h2>Step 2 : add some components to the application </h2>
+		<div class="col-md-12">
+	        <h3>Name : {{item.name}}</h3>
+	    </div>
+		<div class="col-md-9">
+			<div class="panel panel-default">
+		        
+				<div class="panel-heading"> 
+					<h3 class="no-margin-v">appCompList</h3>
+				</div>
+		        <div 	ng-class="{ 'dotted-border' : appCompList.length == 0 }" 
+			        class="panel-body"
+			        style="min-height:400px;" 
+			        dnd-list="appCompList"
+					dnd-allowed-types="['vmt']">
+		        	<div ng-repeat="thing in appCompList" 
+			        	dnd-effect-allowed="move"
+			        	dnd-moved="appCompList.splice($index, 1)"
+				        dnd-draggable="thing"
+				        dnd-type="'vmt'"
+			        	class="col-md-4"
+			        	ng-init="vmt_removable = true;
+			        			currentList = appCompList"
+			        	ng-include="'md-vmt.htm'">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-9" style="padding-top : 10px;padding-bottom : 10px;">
+							<h3 class="no-margin-v">VM Templates</h3>			
+						</div>
+						<div class="col-md-3 text-center no-padding td-button td-button-detail" ng-click="refreshVMT()">
+							<div data-original-title="refresh" data-toggle="tooltip" data-placement="top" title="" tooltip="">
+
+								<span class="ng-scope">
+									<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+								</span>
+							</div>					
+						</div>				
+					</div>
+				</div>
+		        <div class="panel-body">
+		        	<div ng-repeat="thing in vmtList"
+					dnd-draggable="thing"
+					dnd-type="'vmt'"
+					ng-include=" 'sm-vmt.htm' ">
+					</div>
+				</div>
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-9" style="padding-top : 10px;padding-bottom : 10px;">
+							<h3 class="no-margin-v">Components</h3>			
+						</div>
+
+						<div class="col-md-3 text-center no-padding td-button td-button-detail" ng-click="refreshComponents()">
+							<div data-original-title="refresh" data-toggle="tooltip" data-placement="top" title="" tooltip="">
+
+								<span class="ng-scope">
+									<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+								</span>
+							</div>					
+						</div>				
+					</div>
+				</div>
+				<div class="panel-body">
+					<div ng-repeat="comp in compList"
+					dnd-draggable="comp"
+					dnd-type="'comp'"
+					ng-include="'sm-comp.htm'">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- - - - - - - - - - -->
+	<!-- 	END STEP 2 	   -->
+	<!-- - - - - - - - - - -->
+
+	<!-- - - - - - - - - - -->
+	<!-- 	  STEP 3 	   -->
+	<!-- - - - - - - - - - -->
+	<div ng-if="step == 3" class="row">
+		<h2>Step 3 : provide communication between the components</h2>
+
+		<div class="col-md-9">
+			<div class="panel panel-default">
+				<div class="panel-heading"> 
+					<h3 class="no-margin-v">Communications</h3>
+				</div>
+				<div class="panel-body">
+				    <div class="row">
+				    	<div class="col-lg-6 col-md-6" >
+							<div class="panel panel-default">
+								<div class="panel-heading" style="padding-top:0; padding-bottom:0;"> 
+									<div class="row">
+									<!-- ng class to col-12 -->
+										<div class="col-lg-9 col-xs-10" style="padding-top : 10px;padding-bottom : 10px;">	
+											New Communication	
+										</div>
+										<div class="col-lg-3 col-xs-2 text-center no-padding td-button td-button-add" ng-click="addToCommunicationList()">
+											<div data-original-title="add" data-toggle="tooltip" data-placement="top" title="" tooltip="">
+												<span class="ng-scope">
+													<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+												</span>
+											</div>					
+										</div>					
+									</div>
+
+								</div>
+								<div class="panel-body" style="/*border: 1px solid #DDD; padding:0;*/min-height:220px;">
+							        <div class="col-lg-6" style="min-height:100px;" 
+							        	dnd-list="tempCommunication.provider"
+								        dnd-disable-if="tempCommunication.provider.length >= 1"
+								        dnd-allowed-types="['vmt']"
+							        	ng-class="{ 'dotted-border' : tempCommunication.provider.length == 0 }">
+
+										<div class="panel dnd-message" ng-if="tempCommunication.provider.length == 0">
+											Drop provider
+										</div>
+							        	<div ng-repeat="thing in tempCommunication.provider"
+							        	ng-init="	title= 'Provider ( VMT : '+thing.virtualMachineTemplate+' )' ;
+							        				vmt_removable=true;
+							        				comp_removable=false;
+					        						currentList = tempCommunication.provider;"
+							        	ng-include=" 'md-vmt.htm' ">
+										
+										</div>
+									</div>
+							        <div class="col-lg-6" style="/*border: 1px solid #DDD;*/ min-height:100px;" 
+							        	dnd-allowed-types="['vmt']"
+							        	dnd-list="tempCommunication.consumer"
+								        dnd-disable-if="tempCommunication.consumer.length >= 1"
+							        	ng-class="{ 'dotted-border' : tempCommunication.consumer.length == 0 }">
+										<div class="dnd-message" ng-if="tempCommunication.consumer.length == 0">
+											Drop consumer
+										</div>
+										<div ng-repeat="thing in tempCommunication.consumer" 
+							        		ng-init=" 	vmt_removable=true;
+							        					comp_removable=false;
+							        					title= 'Consumer ( VMT : '+thing.virtualMachineTemplate+' )' ;
+					        							currentList = tempCommunication.consumer;"
+							        		ng-include=" 'md-vmt.htm' ">
+							        	</div>
+									</div>
+						        	<div class="col-md-12">
+										<div class="form-inline" style="text-align : center">
+										  <div class="form-group">
+										    <div class="input-group">
+										      <div class="input-group-addon">Port</div>
+										      <input type="text" class="form-control" ng-model="tempCommunication.port">
+										    </div>
+										  </div>
+										</div>
+						        	</div>
+								</div>
+							</div>	
+						</div>	
+				    	<div class="col-md-6" ng-repeat="communication in communicationList.slice().reverse()">
+							<div class="panel panel-info">
+								<div class="panel-heading" style="padding-top:0; padding-bottom:0;"> 
+									<div class="row">
+									<!-- ng class to col-12 -->
+										<div class="col-md-9" style="padding-top : 10px;padding-bottom : 10px;">	
+											Communication number {{$index}}	
+										</div>
+										<div class="col-md-3 text-center no-padding td-button td-button-delete" ng-click="communicationList.splice($index, 1)">
+											<div data-original-title="delete" data-toggle="tooltip" data-placement="top" title="" tooltip="">
+
+												<span class="ng-scope">
+													<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+												</span>
+											</div>					
+										</div>				
+									</div>
+								</div>
+								<div class="panel-body" style="min-height:220px;">
+									<div class="col-lg-6">
+							        	<div ng-controller="emptyCtrl"
+							        			ng-init="	
+						        				thing = communication.provider;
+						        				title= 'Provider ( VMT : '+thing.virtualMachineTemplate+' )' ;
+						        				vmt_removable=false;
+						        				comp_removable=false;"
+						        			ng-include=" 'md-vmt.htm' ">
+										</div>
+									</div>
+									<div class="col-lg-6">
+							        	<div ng-controller="emptyCtrl"
+							        		 ng-init="	
+						        				thing = communication.consumer;
+						        				title= 'Consumer ( VMT : '+thing.virtualMachineTemplate+' )' ;
+						        				vmt_removable=false;
+						        				comp_removable=false;"
+						        			ng-include=" 'md-vmt.htm' ">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="panel panel-primary">
+											<div class="panel-heading"> 
+												Port : {{communication.port}}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel-heading"> 
+				<h3 class="no-margin-v">appCompList</h3>
+			</div>
+			<div class="panel-body">
+
+		        <div class="row" style="min-height:400px;">
+		        	<div ng-repeat="thing in appCompList"
+		        		dnd-draggable="thing"
+						dnd-type="'vmt'"
+						class="col-md-12"
+			        	ng-init="vmt_removable = false;"
+			        	ng-include="'md-vmt.htm'">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- - - - - - - - - - -->
+	<!-- 	END STEP 3 	   -->
+	<!-- - - - - - - - - - -->
+
+	<div  class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button ng-if="step >1" type="submit" ng-click="setStep(-1)" class="btn btn-default">
+				Preview Step
+			</button>
+			<button ng-if="step != 3"type="submit" ng-click="setStep(1)" class="btn btn-success">
+				Next Step
+			</button>
+
+			<button ng-if="step == 3" type="submit" ng-click="sendForm()" class="btn btn-success">
+				Submit
+				<span ng-if="currentForms.length" class="small">
+					( and return to {{currentForms[currentForms.length-1].url}} form )
+				</span>
+			</button>
+			<button type="submit" ng-click="returnForm()" class="btn btn-warning">
+				Cancel
+				<span ng-if="currentForms.length" class="small">
+					( and return to {{currentForms[currentForms.length-1].url}} form )
+				</span>
+			</button>
+		</div>
+	</div>
+</form>
+
+<!-- - - - - - - - - - -->
+<!-- 	 TEMPLATES 	   -->
+<!-- - - - - - - - - - -->
+<script type="text/ng-template" id="sm-comp.htm">
+	<h4 class="text-center">
+		<div class="label label-success" 
+		style="width : 100%;margin-top: 10px;">
+			{{comp.name}}
+			<span ng-if="comp_removable" 
+					class="text-center no-padding td-mini-button td-button-delete" 
+					ng-click="thing.components.splice($index, 1)">
+
+				<span data-original-title="delete" data-toggle="tooltip" data-placement="top" title="" tooltip="">
+
+					<span class="ng-scope">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</span>
+				</span>					
+			</span>	
+		</div>
+	</h4>
+</script>
+
+<script type="text/ng-template" id="sm-vmt.htm">
+	<h3>
+		<div class="col-md-12 label label-primary"
+		style="width : 100%;margin-top: 10px;">
+			VMT : {{thing.id}}
+		</div>
+	</h3>
+</script>
+
+<script type="text/ng-template" id="md-vmt.htm">
+	<div class="panel panel-primary panel-xs">
+		<div class="panel-heading" style="padding-top:0; padding-bottom:0;"> 
+			<div class="row">
+			<!-- ng class to col-12 -->
+				<div class="col-md-9" style="padding-top : 10px;padding-bottom : 10px;">	
+					<span ng-if="title!==undefined">{{title}}</span>
+					<span ng-if="title===undefined">VMT : {{thing.id}} </span>		
+				</div>
+				<div ng-if="vmt_removable" class="col-md-3 text-center no-padding td-button td-button-delete" ng-click="currentList.splice($index, 1)">
+					<div data-original-title="delete" data-toggle="tooltip" data-placement="top" title="" tooltip="">
+
+						<span class="ng-scope">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</span>
+					</div>					
+				</div>				
+			</div>
+		</div>
+		<div class="panel-body" 
+			ng-class="{ 'dotted-border' : thing.components.length == 0 }"
+			style="min-height:40px;" 
+		    dnd-list="thing.components" 
+		    dnd-disable-if="thing.components.length >= 1" 
+		    dnd-allowed-types="['comp']" >
+			<div class="col-md-12" ng-repeat="comp in thing.components" 
+	        	ng-init="
+	        			comp_removable=(comp_removable!==undefined && comp_removable==true)
+	        			|| (comp_removable===undefined && vmt_removable);"
+	        	ng-include="'sm-comp.htm'">
+			</div>
+		</div>
+	</div>
+</script>
+<!-- - - - - - - - - - -->
+<!--   END TEMPLATES   -->
+<!-- - - - - - - - - - -->

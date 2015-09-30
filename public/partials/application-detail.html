@@ -1,0 +1,236 @@
+<h1>{{apiname}} : <span class="small">{{item.id}}</span></h1>
+<div class="text-right">
+	<div style="display : inline-block;" class="text-center no-padding td-button td-button-detail width-60" ng-click="list()">
+		<div data-toggle="tooltip" data-placement="top" title="details" tooltip>
+			<span ng-if="apiObjectHave('get')">
+				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+			</span>	
+		</div>							
+	</div>
+	<div style="display : inline-block;" class="text-center no-padding td-button td-button-edit width-60" ng-click="edit(1)">
+		<div data-toggle="tooltip" data-placement="top" title="edit" tooltip>
+			<span ng-if="apiObjectHave('put')">
+				<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			</span>
+		</div>
+	</div>
+	<div style="display : inline-block;" class="text-center no-padding td-button td-button-delete width-60" ng-click="del()">
+		<div data-toggle="tooltip" data-placement="top" title="delete" tooltip>
+			<span ng-if="apiObjectHave('del')">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			</span>
+		</div>
+	</div>
+</div>
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<table class="table">
+			<tr ng-if="!arguments" ng-repeat="(key, value) in item" ng-if="key!='id' && key!='links'">
+				<th class="active width-0" scope="row">{{key}}</th>
+				<td ng-if="isObject(item[key])">
+					<a href="#/{{item[key].apiName}}/{{item[key].id}}">{{ item[key].name }}</a>
+				</td>
+				<td ng-if="isArray(item[key])">
+					<ul class="list-inline" >
+					<li ng-repeat="(key2, value2) in item[key]">
+						<a href="#/{{value2.apiName}}/{{value2.id}}">{{ value2.name }}</a><span ng-if="!$last">,</span>
+					</li>
+				</td>
+				<td ng-if="!isObject(item[key]) && !isArray(item[key])">
+					{{ item[key] }}
+				</td>
+			</tr>					
+			<tr ng-if="arguments" ng-repeat="key in arguments" ng-if="key!='id' && key!='links'">
+				<th  class="active width-0" scope="row">{{key}}</th>
+				
+				<td ng-if="isObject(item[key])">
+					<a href="#/{{item[key].apiName}}/{{item[key].id}}">{{ item[key].name }}</a>
+				</td>
+				<td ng-if="isArray(item[key])">
+					<ul class="list-inline" >
+					<li ng-repeat="(key2, value2) in item[key]">
+						<a href="#/{{value2.apiName}}/{{value2.id}}">{{ value2.name }}</a>
+					</li>
+				</td>
+				<td ng-if="!isObject(item[key]) && !isArray(item[key])">
+					{{ item[key] }}
+				</td>
+			 </tr>
+		</table>
+	</div>
+</div>
+
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="padding-top:0; padding-bottom:0;"> 
+
+
+			<div class="row">
+			<!-- ng class to col-12 -->
+				<div class="col-lg-9 col-xs-10" style="padding-top : 10px;padding-bottom : 10px;">	
+					<h3 class="no-margin-v">applicationComponent List</h3>
+				</div>
+				<div ng-if="apiObjectHave('put')"
+				 class="col-lg-3 col-xs-2 text-center no-padding td-button td-button-edit" 
+				 ng-click="editAppComp()">
+					<div data-original-title="edit" data-toggle="tooltip" data-placement="top" title="edit" tooltip="">
+						<span class="ng-scope">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</span>
+					</div>					
+				</div>					
+			</div>
+		</div>
+		<div class="panel-body"> 
+	    	<div class="col-md-3" ng-repeat="thing in item.applicationComponents" >
+				<div class="panel panel-primary">
+					<div class="panel-heading"> 
+						{{thing.id}} ( VMT : {{thing.virtualMachineTemplate}} )
+					</div>
+					<div class="row panel-body" style="min-height:40px;">
+						<div class="col-md-6">
+							<div class="label label-success">{{thing.components[0].name}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="padding-top:0; padding-bottom:0;"> 
+			<div class="row">
+				<div class="col-lg-9 col-xs-10" style="padding-top : 10px;padding-bottom : 10px;">	
+					<h3 class="no-margin-v">Communications List</h3>
+				</div>
+				<div ng-if="apiObjectHave('put')"
+				 class="col-lg-3 col-xs-2 text-center no-padding td-button td-button-edit" 
+				 ng-click="editCommunications()">
+					<div data-original-title="edit" data-toggle="tooltip" data-placement="top" title="edit" tooltip="">
+						<span class="ng-scope">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</span>
+					</div>					
+				</div>					
+			</div>
+		</div>
+		<div class="panel-body">
+		    <div class="row">
+		    	<div class="col-md-12" ng-repeat="communication in item.communications">
+					<div class="panel panel-info">
+						<div class="panel-heading"> 
+							Communication number {{communication.id}}
+						</div>
+						<div class="panel-body" style="min-height:40px;">
+							<div class="col-md-6">
+								<div class="panel panel-info">
+									<div class="panel-heading" > 
+										Provider : {{item.portProvs[communication.providedPort].name}}
+									</div>
+									<div class="panel-body" >
+							        	<div ng-controller="emptyCtrl"
+							        			ng-init="	
+						        				thing = item.applicationComponentsById[item.portProvs[communication.providedPort].applicationComponent];
+						        				
+						        				vmt_removable=false;
+						        				comp_removable=false;"
+						        			ng-include=" 'md-vmt.htm' ">
+										</div>
+
+										<div class="col-md-12">
+											<div class="panel panel-primary">
+												<div class="panel-heading ng-binding"> 
+													Port : {{item.portProvs[communication.providedPort].port}}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="panel panel-info">
+									<div class="panel-heading" > 
+										Consumer : {{item.portReqs[communication.requiredPort].name}}
+									</div>
+									<div class="panel-body" >
+							        	<div ng-controller="emptyCtrl"
+							        			ng-init="	
+						        				thing = item.applicationComponentsById[item.portReqs[communication.requiredPort].applicationComponent];
+						        				
+						        				vmt_removable=false;
+						        				comp_removable=false;"
+						        			ng-include=" 'md-vmt.htm' ">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - -->
+<!-- 	 TEMPLATES 	   -->
+<!-- - - - - - - - - - -->
+<script type="text/ng-template" id="sm-comp.htm">
+	<h4 class="text-center">
+		<div class="label label-success" 
+		style="width : 100%;margin-top: 10px;">
+			{{comp.name}}
+			<span ng-if="comp_removable" 
+					class="text-center no-padding td-mini-button td-button-delete" 
+					ng-click="thing.components.splice($index, 1)">
+
+				<span data-original-title="delete" data-toggle="tooltip" data-placement="top" title="" tooltip="">
+
+					<span class="ng-scope">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</span>
+				</span>					
+			</span>	
+		</div>
+	</h4>
+</script>
+
+<script type="text/ng-template" id="md-vmt.htm">
+	<div class="panel panel-primary panel-xs">
+		<div class="panel-heading" style="padding-top:0; padding-bottom:0;"> 
+			<div class="row">
+			<!-- ng class to col-12 -->
+				<div class="col-md-9" style="padding-top : 10px;padding-bottom : 10px;">	
+					<span ng-if="title!==undefined">{{title}}</span>
+					<span ng-if="title===undefined">VMT : {{thing.id}} </span>		
+				</div>
+				<div ng-if="vmt_removable" class="col-md-3 text-center no-padding td-button td-button-delete" ng-click="currentList.splice($index, 1)">
+					<div data-original-title="delete" data-toggle="tooltip" data-placement="top" title="" tooltip="">
+
+						<span class="ng-scope">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</span>
+					</div>					
+				</div>				
+			</div>
+		</div>
+		<div class="panel-body" 
+			ng-class="{ 'dotted-border' : thing.components.length == 0 }"
+			style="min-height:40px;" 
+		    dnd-list="thing.components" 
+		    dnd-disable-if="thing.components.length >= 1" 
+		    dnd-allowed-types="['comp']" >
+			<div class="col-md-12" ng-repeat="comp in thing.components" 
+	        	ng-init="
+	        			comp_removable=(comp_removable!==undefined && comp_removable==true)
+	        			|| (comp_removable===undefined && vmt_removable);"
+	        	ng-include="'sm-comp.htm'">
+			</div>
+		</div>
+	</div>
+</script>
+<!-- - - - - - - - - - -->
+<!--   END TEMPLATES   -->
+<!-- - - - - - - - - - -->

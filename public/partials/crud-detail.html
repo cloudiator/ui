@@ -1,0 +1,67 @@
+<h1>{{apiname}} : <span class="small">{{item.id}}</span></h1>
+<div class="text-right">
+<!--
+	<a ng-if="apiObjectHave('list')" class="btn btn-primary btn-xs" href="#/{{routeParams.apiname}}"> list </a>	
+	<a ng-if="apiObjectHave('put')" class="btn btn-info btn-xs" href="#/{{routeParams.apiname}}/{{item.id}}/set"> update </a>
+	<button ng-if="apiObjectHave('del')" ng-click="del()" type="button" class="btn btn-danger btn-xs">delete</button>
+	-->
+	
+	<div style="display : inline-block;" class="text-center no-padding td-button td-button-detail width-60" ng-click="list()">
+		<div data-toggle="tooltip" data-placement="top" title="details" tooltip>
+			<span ng-if="apiObjectHave('get')">
+				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+			</span>	
+		</div>							
+	</div>
+	<div style="display : inline-block;" class="text-center no-padding td-button td-button-edit width-60" ng-click="edit()">
+		<div data-toggle="tooltip" data-placement="top" title="edit" tooltip>
+			<span ng-if="apiObjectHave('put')">
+				<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			</span>		
+		</div>			
+	</div>
+	<div style="display : inline-block;" class="text-center no-padding td-button td-button-delete width-60" ng-click="del()">
+		<div data-toggle="tooltip" data-placement="top" title="delete" tooltip>
+			<span ng-if="apiObjectHave('del')">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			</span>	
+		</div>					
+	</div>
+</div>					
+<div class="panel panel-default">
+	<table class="table">
+		<tr ng-if="!arguments" ng-repeat="(key, value) in item" ng-if="key!='id' && key!='links'">
+			<th class="active width-0" scope="row">{{key}}</th>
+			<td ng-if="isObject(item[key])">
+				<a href="#/{{item[key].apiName}}/{{item[key].id}}">{{ item[key].name }}</a>
+			</td>
+			<td ng-if="isArray(item[key])">
+				<ul class="list-inline" >
+					<li ng-repeat="(key2, value2) in item[key]">
+						<a href="#/{{value2.apiName}}/{{value2.id}}">{{ value2.name }}</a><span ng-if="!$last">,</span>
+					</li>
+				</ul>
+			</td>
+			<td ng-if="!isObject(item[key]) && !isArray(item[key])">
+				{{ item[key] }}
+			</td>
+		</tr>					
+		<tr ng-if="arguments" ng-repeat="key in arguments" ng-if="key!='id' && key!='links'">
+			<th  class="active width-0" scope="row">{{key}}</th>
+			
+			<td ng-if="isObject(item[key])">
+				<a href="#/{{item[key].apiName}}/{{item[key].id}}">{{ item[key].name }}</a>
+			</td>
+			<td ng-if="isArray(item[key])">
+				<ul class="list-inline" >
+					<li ng-repeat="(key2, value2) in item[key]">
+						<a href="#/{{value2.apiName}}/{{value2.id}}">{{ value2.name }}</a>
+					</li>
+				</ul>
+			</td>
+			<td ng-if="!isObject(item[key]) && !isArray(item[key])">
+				{{ item[key] }}
+			</td>
+		 </tr>
+	</table>
+</div>

@@ -1,0 +1,20 @@
+{
+	"de.uniulm.omi.cloudiator.visor.sensors.CpuUsageSensor" :
+	{
+		"aggregator": {"name":"avg"},
+		"interval": {"value":"1","unit":"seconds"},
+		"start_relative":{"value":"1","unit":"hours"}
+	},
+	"de.uniulm.omi.cloudiator.visor.sensors.MemoryUsageSensor" :
+	{
+		"aggregator": {"name":"avg"},
+		"interval": {"value":"1","unit":"seconds"},
+		"start_relative":{"value":"1","unit":"hours"}
+	},
+	"default" :
+	{
+		"aggregator": {"name":"avg"},
+		"interval": {"value":"1","unit":"seconds"},
+		"start_relative":{"value":"1","unit":"hours"}
+	}
+}		

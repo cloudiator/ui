@@ -1,0 +1,37 @@
+{
+	"aggregator" : ["SUM","AVG","MAX","MIN","RATE","DEV","DIV","HISTOGRAM","LEAST_SQUARES"],
+	"flowOperator" : ["MAP","REDUCE"],
+	"ipType" : ["PUBLIC","PRIVATE"],
+	"locationScope" : ["REGION","ZONE","HOST"],
+	"operatingSystemArchitecture" : ["I386","AMD64"],
+	"operatingSystemVendorType" : ["NIX","WINDOWS"],
+	"sensors" : [
+		"de.uniulm.omi.cloudiator.visor.sensors.CpuUsageSensor",
+		"de.uniulm.omi.cloudiator.visor.sensors.MemoryUsageSensor",
+		
+		"be.bewan.cloudiator.sensors.cpusensors.CpuIdleSensor",
+		"be.bewan.cloudiator.sensors.cpusensors.CpuNiceUsageSensor",
+		"be.bewan.cloudiator.sensors.cpusensors.CpuUserUsageSensor",
+		"be.bewan.cloudiator.sensors.cpusensors.CpuWaitSensor",
+		
+		"be.bewan.cloudiator.sensors.jmxsensors.UpTimeJMXSensor",
+		"be.bewan.cloudiator.sensors.jmxsensors.PeakThreadCountJMXSensor",
+		"be.bewan.cloudiator.sensors.jmxsensors.HeapMemoryUsageJMXSensor",
+		
+		"be.bewan.cloudiator.sensors.mysqlsensors.PercentAllowedConnectionsMySQLSensor",
+		"be.bewan.cloudiator.sensors.mysqlsensors.PercentageOfTableScanMySQLSensor",
+		"be.bewan.cloudiator.sensors.mysqlsensors.NbQueriesMySQLSensor",
+		"be.bewan.cloudiator.sensors.mysqlsensors.NbFailedConnectionsMySQLSensor",
+		
+		"be.bewan.cloudiator.sensors.networksensors.NetPacketsOutSensor",
+		"be.bewan.cloudiator.sensors.networksensors.NetPacketsInSensor",
+		"be.bewan.cloudiator.sensors.networksensors.NetBytesOutSensor",
+		"be.bewan.cloudiator.sensors.networksensors.NetBytesInSensor",
+		
+		"be.bewan.cloudiator.sensors.sigarsensors.MemSwapTotalSensor",
+		"be.bewan.cloudiator.sensors.sigarsensors.MemSwapFreeSensor",
+		"be.bewan.cloudiator.sensors.sigarsensors.MemSwapFreePrcSensor"
+	],
+	"timeUnit" : ["MILISECONDS","SECONDS","MINUTES","HOURS","DAYS","WEEKS","MONTHS","YEARS"],
+	"windowType" : ["TimeWindow"]
+}

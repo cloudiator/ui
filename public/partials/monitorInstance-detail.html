@@ -1,0 +1,12 @@
+<div ng-include="'public/partials/crud-detail.html'"></div>
+<!--{{item}}-->
+
+			<div>
+				<div class="col-md-12 mgt10" 
+					ng-init="init(item)" 
+					ng-if="item"
+					ng-include="chart.url"
+					ng-controller='ChartsCtrl'
+					id="graph-num-{{k}}">
+				</div>
+			</div>

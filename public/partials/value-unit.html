@@ -1,0 +1,30 @@
+<div class="input-group">
+	<span class="input-group-addon" id="basic-addon1">{{valUnitTitle}}</span>
+	<!-- choose start value -->
+	<span class="input-group bootstrap-touchspin">	
+		<span class="" style="display: none;"></span>	
+		<input type="text" class="vertical-spin form-control interval-value" ng-model="valUnit.value" ng-change="change()" />
+		<span class="input-group-btn-vertical">
+			<button class="btn btn-default bootstrap-touchspin-up" type="button"
+				ng-click="addValue(1)">
+				<i class="glyphicon glyphicon-chevron-up"></i>
+			</button>
+			<button class="btn btn-default bootstrap-touchspin-down" type="button"
+				ng-click="addValue(-1)">
+				<i class="glyphicon glyphicon-chevron-down"></i>
+			</button>
+		</span>
+	</span>
+	<!-- choose start unit -->
+	<span class="input-group-btn dropup start-unit-group">
+		<button type="button" class="start-unit-btn btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			<span class="start-unit" ng-bind="valUnit.unit"></span>
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li ng-repeat="unitName in unitNames">
+				<a class="start-unit-opt" ng-click="unitChange($event)">{{unitName}}</a>
+			</li>
+		</ul>						
+	</span>
+</div>

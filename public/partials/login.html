@@ -1,0 +1,17 @@
+<form>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input ng-model='item["email"]' type="email" class="form-control" id="email" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input ng-model='item["password"]' type="password" class="form-control" id="password" placeholder="Password">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Tenant</label>
+    <input ng-model='item["tenant"]' type="text" class="form-control" id="tenant" placeholder="Enter Tenant">
+  </div>
+
+  <button ng-click="login()"  type="submit" class="btn btn-default">Submit</button>
+</form>

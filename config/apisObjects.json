@@ -1,0 +1,556 @@
+{
+	"charts" : 
+	{
+		"api" : "kairosapi"
+	},
+	"login" : 
+	{
+		"api" : "colosseumapi"
+	},
+	"logout" : 
+	{
+		"api" : "colosseumapi"
+	},
+	"api" : 
+	{
+		"api" : "colosseumapi",
+		"crud" : [ "list", "get", "post", "put", "del" ],
+		"form" : 
+		{
+			"name" : "string",
+			"internalProviderName" : "string"		
+		},
+		"list" : [ "id", "name" ],
+		"details" : [ "id", "name", "internalProviderName" ],
+		"tostring" : "name"
+	},
+	"application" : 
+	{
+		"api" : "colosseumapi",
+		"details" : [ "id", "name"],
+		"form" : 
+		{
+			"name" : "string"
+		},
+		"tostring" : "name"
+	},
+	"applicationComponent" :  
+	{
+		"api" : "colosseumapi",
+		"entityName" : "ac",
+		"form" : 
+		{ 
+			"application" : "apiObject", 
+			"component" : "apiObject",
+			"virtualMachineTemplate" : "apiObject"
+		}
+	},
+	"applicationInstance" :  
+	{
+		"api" : "colosseumapi",
+		"entityName" : "applicationInstance",
+		"form" : 
+		{ 
+			"application" : "apiObject"
+		}
+	},
+	"cloud" :  
+	{ 
+		"api" : "colosseumapi",
+		"form" : 
+		{ 
+			"name" : "string",
+			"endpoint" : "string",
+			"api" : 
+			{  
+				"type" : "apiObject",
+				"name" : "api"
+			}
+		},
+		"tostring" : "name"
+	},
+	"cloudCredential" :  
+	{
+		"api" : "colosseumapi",
+		"form" : 
+		{
+			"user" : "string" ,  
+			"secret" : "string",
+			"cloud" : "apiObject", 
+			"tenant" : "apiObject"
+		},
+		"tostring" : "user"
+	},
+	"communication" :  
+	{
+		"api" : "colosseumapi",
+		"form" : 
+		{
+			"requiredPort" :  
+			{
+				"type" : "internalObject",
+				"content" : 
+				{
+					"name" : "string",
+					"applicationComponent" :  "apiObject"
+				}
+			},					
+			"providedPort" :  
+			{
+				"type" : "internalObject",
+				"content" : 
+				{
+					"name" : "string",
+					"applicationComponent" :  "apiObject",
+					"port" : "int"
+				}
+			}
+		}
+	},
+	"tenant" :  
+	{
+		"entityName" : "tenant",
+		"api" : "colosseumapi",
+		"form" : 
+		{
+			"name" : "string",
+			"frontendUsers" : 
+			{  
+				"isArray" : true,
+				"type" : "apiObject",
+				"name" : "frontendUser"
+			}
+			
+		},
+		"tostring" : "name"
+	},
+	"frontendUser" :  
+	{
+		"api" : "colosseumapi",
+		"form" :
+		{
+			"firstName" : "string",
+			"lastName" : "string",
+			"mail" : "string"
+		},
+		"tostring" : "mail"
+	},
+	"geoLocation" :  
+	{
+		"api" : "colosseumapi",
+		"entityName" : "geo",
+		"form" :
+		{
+			"region":"string",
+			"city":"string",
+			"country":"string",
+			"iso3166":"string",
+			"locationLatitude":"number",
+			"locationLongitude":"number"
+		}
+	},
+	"hardware" :  
+	{
+		"api" : "colosseumapi",
+		"form" : 
+		{ 
+			"cloud" : "apiObject" , 
+			"hardwareOffer" : "apiObject" , 
+			"remoteId" : "string",
+			"locations" :
+			{  
+				"isArray" : true,
+				"type" : "apiObject",
+				"name" : "location"
+			},
+			"cloudCredentials": 
+			{  
+				"isArray" : true,
+				"type" : "apiObject",
+				"name" : "cloudCredential"
+			}
+		}
+	},
+	"hardwareOffer" :
+	{
+		"api" : "colosseumapi",
+		"form" :
+		{
+			"numberOfCores" : "int",
+			"mbOfRam" : "int",
+			"localDiskSpace" : "int"
+		}
+	},
+	"image" :  
+	{
+		"api" : "colosseumapi",
+ 
+		"form" : 
+		{ 
+			"name" : "string" , 
+			"cloud" : "apiObject" , 
+			"remoteId" : "string",
+			"locations" :
+			{
+				"isArray" : true,
+				"type" : "apiObject",
+				"name" : "location"
+			},
+			"cloudCredentials":
+			{
+				"isArray" : true,
+				"type" : "apiObject",
+				"name" : "cloudCredential"
+			},
+			"operatingSystem": "apiObject"
+		},
+		"tostring" : "name"
+	},
+	"instance" :
+	{
+		"api" : "colosseumapi",
+		"form" :
+		{
+			"applicationInstance" : "apiObject", 
+			"applicationComponent" : "apiObject", 
+			"virtualMachine" : "apiObject" 
+		}
+	},
+	"ipAddress" :  
+	{
+		"api" : "colosseumapi",
+		"entityName" : "ip",
+		"form" : 
+		{
+			"ip" : "string",
+			"ipType" : 
+			{ 
+				"type" : "enum", 
+				"name" : "ipType"
+			},
+			"virtualMachine" : "apiObject"
+		}
+	},
+	"component" :
+	{
+		"api" : "colosseumapi",
+		"entityName" : "lifecycleComponent",
+		"form" :
+		{
+			"name" : "string",
+			"download" : "string",
+			"install" : "string",
+			"start" : "string",
+			"stop" : "string"
+		},
+		"tostring" : "name"
+	},
+	"location" :  
+	{
+		"api" : "colosseumapi",
+ 
+		"form" : 
+		{ 
+			"cloud" : "apiObject" , 
+			"remoteId":"string",
+			"parent":
+			{
+				"type" : "apiObject",
+				"name" : "location"
+			},
+			"locationScope" : 
+			{ 
+				"type" : "enum", 
+				"name" : "locationScope"
+			},
+			"isAssignable":"boolean",
+			"geoLocation":"apiObject" ,
+			"cloudCredentials": 
+			{  
+				"isArray" : true,
+				"type" : "apiObject",
+				"name" : "cloudCredential"
+			}
+		}
+	},
+	"operatingSystem" :  
+	{
+		"api" : "colosseumapi",
+		"entityName" : "os",
+		"form" :
+		{
+			"operatingSystemArchitecture" : 
+			{ 
+				"type" : "enum", 
+				"name" : "operatingSystemArchitecture"
+			},
+			"operatingSystemVendor" : "apiObject",
+			"version" : "string"
+		}
+	},
+	"operatingSystemVendor" :  
+	{
+		"api" : "colosseumapi",
+		"entityName" : "osVendor",
+		"form" :
+		{
+			"name" : "string",
+			"operatingSystemVendorType" : 
+			{ 
+				"type" : "enum", 
+				"name" : "operatingSystemVendorType"
+			}
+		},
+		"tostring" : "name"
+	},
+	"providedPort" :  
+	{
+		"api" : "colosseumapi",
+		"entityName" : "portProv",
+		"form" :
+		{
+			"name" : "string",
+			"applicationComponent" :  "apiObject",
+			"port" : "int"
+		},
+		"tostring" : "name"
+	},
+	"requiredPort" :  
+	{
+		"api" : "colosseumapi",
+		"entityName" : "portReq",
+		"form" :
+		{
+			"name" : "string",
+			"applicationComponent" :  "apiObject"
+		},
+		"tostring" : "name"
+	},
+	"virtualMachine" : 
+	{
+		"api" : "colosseumapi",
+		"form" : 
+		{
+			"name" : "string", 
+			"cloud" : "apiObject", 	
+			"image" : 
+			{ 
+				"type" : "apiObject", 
+				"name" : "image",
+				"dependency" : "cloud"
+			}, 		
+			"hardware" : 
+			{ 
+				"type" : "apiObject",
+				"name" : "hardware",
+				"dependency" : "cloud"
+			},
+			"location" : 
+			{ 
+				"type" : "apiObject", 
+				"name" : "location",
+				"dependency" : "cloud"
+			}
+		},
+		"tostring" : "name"
+	},
+	"virtualMachineTemplate" : 
+	{ 
+		"api" : "colosseumapi",
+		"entityName" : "vmt",
+		"form" :
+		{
+			"cloud" : "apiObject",
+			"image" :
+			{
+				"type" : "apiObject",
+				"name" : "image",
+				"dependency" : "cloud"
+			},
+			"location" :
+			{
+				"type" : "apiObject",
+				"name" : "location",
+				"dependency" : "cloud"
+			},
+			"hardware" :
+			{
+				"type" : "apiObject",
+				"name" : "hardware",
+				"dependency" : "cloud"
+			}
+		}
+	},
+	"componentHorizontalInScalingAction" : 
+	{ 
+		"api" : "colosseumapi",
+		"form" :
+		{
+			"externalReferences" :
+			{
+				"isArray" : "true",
+				"type" : "string"
+			},
+			"amount" : "int",
+			"min" : "int",
+			"max" : "int",
+			"count" : "int",
+			"applicationComponent" :  "apiObject"
+		}
+	},
+	"componentHorizontalOutScalingAction" : 
+	{ 
+		"api" : "colosseumapi",
+		"form" :
+		{
+			"externalReferences" :
+			{
+				"isArray" : "true",
+				"type" : "string"
+			},
+			"amount" : "int",
+			"min" : "int",
+			"max" : "int",
+			"count" : "int",
+			"applicationComponent" :  "apiObject"
+		}
+	},
+	"composedMonitor" : 
+	{ 
+		"api" : "colosseumapi",
+		"form" :
+		{
+		    "flowOperator":
+			{ 
+				"type" : "enum", 
+				"name" : "flowOperator"
+			},	
+		    "function":
+			{ 
+				"type" : "enum", 
+				"name" : "aggregator"
+			},	
+		    "quantifier":
+			{ 
+				"type" : "apiObject", 
+				"name" : "formulaQuantifier"
+			},
+		    "schedule": "apiObject",
+		    "window":
+			{ 
+				"type" : "apiObject", 
+				"name" : "timeWindow"
+			},
+		    "monitors":
+			{
+				"isArray" : "true",
+				"type" : "apiObject",
+				"name" : ["rawMonitor","composedMonitor","constantMonitor"]
+			},
+		    "scalingActions":
+			{
+				"isArray" : "true",
+				"type" : "apiObject",
+				"name" : ["componentHorizontalInScalingAction","componentHorizontalOutScalingAction"]
+			}
+		}
+	},
+	"constantMonitor" : 
+	{ 
+		"api" : "colosseumapi",
+		"form" :
+		{
+		    "value": "number"
+		}
+	},
+	"formulaQuantifier" : 
+	{ 
+		"api" : "colosseumapi",
+		"form" :
+		{
+			"relative" : "boolean",
+		    "value": "number"
+		}
+	},
+	"schedule" :
+	{
+		"api" : "colosseumapi",
+		"form" :
+		{
+		    "interval":"int",
+		    "timeUnit":
+			{ 
+				"type" : "enum", 
+				"name" : "timeUnit"
+			}
+		}
+	},
+	"timeWindow" :
+	{
+		"api" : "colosseumapi",
+		"form" :
+		{
+		    "interval":"int",
+		    "timeUnit":
+			{ 
+				"type" : "enum", 
+				"name" : "timeUnit"
+			}
+		}
+	},
+	"sensorDescription" :
+	{
+		"api" : "colosseumapi",
+		"form" :
+		{
+		    "className":
+			{ 
+				"type" : "enum", 
+				"name" : "sensors"
+			},
+		    "metricName":"string",
+		    "isVmSensor":"boolean"
+	    },
+	    "tostring" : "metricName"
+	},
+
+
+	"monitorInstance" : 
+	{ 
+		"api" : "colosseumapi",
+		"form" :
+		{
+		    "externalReferences":
+			{ 
+				"type" : "string", 
+				"name" : "flowOperator"
+			},	
+		    "monitor":
+			{
+				"type" : "apiObject",
+				"name" : ["rawMonitor","composedMonitor","constantMonitor"]
+			},
+		    "ipAddress": "apiObject",
+		    "virtualMachine": "apiObject",
+		    "component":"apiObject"
+		}
+	},
+	"rawMonitor" : 
+	{ 
+		"api" : "colosseumapi",
+		"form" :
+		{
+		    "application":"apiObject",
+		    "component": "apiObject",
+
+   			"componentInstance":
+			{ 
+				"type" : "apiObject", 
+				"name" : "instance"
+			},
+    		"cloud":"apiObject", 
+    		"schedule":"apiObject",
+			"sensorDescription" :"apiObject"
+		}
+	}
+}

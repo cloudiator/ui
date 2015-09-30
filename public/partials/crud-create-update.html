@@ -1,0 +1,148 @@
+<!--  
+	currentForm : {{currentForm}}<br>
+	currentForms : {{currentForms}} 
+-->	{{item}}<br>
+	{{currentForms}}<br>
+	{{options}}
+
+<div class="row">
+	<h1 class="col-sm-6">{{crudTitle}} {{apiname}}</h1>
+	<h2 ng-if="item.id" class="col-sm-6"> id : {{item.id}}</span></h2>
+</div>
+<form class="form-horizontal">
+<!-- item: {{item}} -->
+	<div>
+		<div class="form-group" 
+		ng-if="key!='ui_isArray'" 
+		ng-init="tempItem = item;fieldType = value.type || value" 
+		ng-repeat="(key, value) in form" 
+		ng-include="'fieldTree'"></div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" ng-click="sendForm()" class="btn btn-success">
+				Submit 
+				<span ng-if="currentForms.length" class="small">
+					( and return to {{currentForms[currentForms.length-1].url}} form )
+				</span>
+			</button>
+			<button type="submit" ng-click="returnForm()" class="btn btn-warning">
+				Cancel 
+				<span ng-if="currentForms.length" class="small">
+					( and return to {{currentForms[currentForms.length-1].url}} form )
+				</span>
+			</button>
+		</div>
+	</div>
+</form>
+<script type="text/ng-template" id="fieldTree">
+	<div class="row">
+		<label class="col-sm-2 control-label">{{k = key}}</label>
+			<!-- If it is a String => input:text -->
+			<div ng-if="fieldType == 'string' || fieldType == 'number'" class="col-sm-10">
+				<div ng-if="!value.isArray">
+					<input type="text"  ng-model='tempItem[key]'  class="form-control">
+				</div>
+				<div ng-if="value.isArray" ng-init="tempItem[key] = tempItem[key] || []">
+					<div ng-repeat="zzz in tempItem[key] track by $index">
+						<input type="text" ng-model='tempItem[key][$index]'  class="form-control">
+					</div>
+					<span ng-click="tempItem[key].push('');" class="btn btn-success glyphicon glyphicon-plus"></span>
+					<span ng-click="tempItem[key].pop();" class="btn btn-danger glyphicon glyphicon-remove"></span>
+				</div>
+			</div>	
+			<!-- If it is a int/number => input:number -->
+			<div ng-if="fieldType == 'int'" class="col-sm-10">
+				<div ng-if="!value.isArray">
+					<input type="number"  ng-model='tempItem[key]'  class="form-control">
+				</div>
+				<div ng-if="value.isArray">
+					<div ng-repeat="zzz in tempItem[key] track by $index">
+						<input type="number" ng-model='tempItem[key][$index]'  class="form-control">
+					</div>
+					<span ng-click="tempItem[key].push('');" class="btn btn-success glyphicon glyphicon-plus"></span>
+					<span ng-click="tempItem[key].pop();" class="btn btn-danger glyphicon glyphicon-remove"></span>
+				</div>
+			</div>	
+			<!-- If it is a boolean => input:checkbox -->
+			<div ng-if="fieldType == 'boolean'" class="col-sm-10">
+				<input type="checkbox"  ng-if="!value.isArray" ng-model="tempItem[key]">
+				<input type="checkbox"  ng-init="tempItem[key] = []" ng-if="value.isArray" ng-model="tempItem[key][0]">
+				<input type="checkbox"  ng-init="tempItem[key] = []" ng-if="value.isArray" ng-model="tempItem[key][1]">
+			</div>		
+			<!-- If it is an apiObject => select option -->
+			<div ng-if="fieldType == 'apiObject'"   class="col-sm-10">
+				<div class="input-group">
+					<select ng-if="isArray(value['name']) && !value.isArray" ng-model='tempItem[key]' class="form-control">
+						<option ng-repeat-start="(keyv, valuev) in value['name']" disabled>{{valuev}}</option>
+						<option 
+							ng-repeat="option in options[value['name'][keyv]] || options[keyv]  | optionsFilter:apiname:k:item" value="{{option.id}}" 
+							ng-selected="tempItem[key]==option.id">{{option.id}}</option>
+						<option ng-repeat-end disabled></option>
+					</select>
+
+					<select ng-if="isArray(value['name']) && value.isArray" ng-model='tempItem[key]'  class="form-control" multiple>
+						<option ng-repeat-start="(keyv, valuev) in value['name']" disabled>{{valuev}}</option>
+						<option 
+							ng-repeat="option in options[value['name'][keyv]] || options[keyv]  | optionsFilter:apiname:k:item"
+							value="{{option.id}}">{{option.id}}</option>
+						<option ng-repeat-end disabled></option>
+					</select>
+
+
+					<select ng-if="!isArray(value['name']) && !value.isArray" ng-model='tempItem[key]' class="form-control">
+						<option 
+						ng-repeat="option in options[value['name']] || options[key]  | optionsFilter:apiname:k:item" value="{{option.id}}" 
+						ng-selected="tempItem[key]==option.id">{{option.id}}</option>
+					</select>
+
+					<select ng-if="!isArray(value['name']) && value.isArray" ng-model='tempItem[key]'  class="form-control" multiple>
+						<option ng-repeat="option in options[value['name']] || options[key]  | optionsFilter:apiname:k:item"
+							value="{{option.id}}">{{option.id}}</option>				
+					</select>
+
+					<div class="input-group-addon text-center no-padding td-button td-button-add"
+						ng-init="apiName=(value['name'] || key)" 
+						ng-click="newButtonAction(apiName+'/add', key)" >
+						<div style="padding :0 10px;" 
+							data-toggle="tooltip" data-placement="top" title="new" tooltip>
+							<span ng-if="apiObjectHave('get')">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</span>		
+						</div>	
+					</div>
+				</div>
+			</div>
+			<!-- If it is an enum => select option 	-->
+			<div ng-if="fieldType == 'enum'"   class="col-sm-10">
+				<select ng-if="!value.isArray" ng-model='tempItem[key]'  class="form-control">
+					<option ng-repeat="type in types[value.name]" value="{{type}}" ng-selected="tempItem[key]==type">{{type}}</option>
+				</select>
+				<select ng-if="value.isArray" ng-model='tempItem[key]'  class="form-control" multiple>
+					<option ng-repeat="type in types[value.name]" value="{{type}}">{{type}}</option>
+				</select>
+			</div>
+			<!-- If it is an internalObject -->
+			<div ng-if="fieldType == 'internalObject'"   class="col-sm-10 panel panel-default" ng-init="tempItem[k] = tempItem[k] || {};">
+				{{tempItem[k]}}
+				<div ng-if="!value.isArray" class="panel-body">
+					<div class="form-group" 
+					ng-init="selectMode = 'multiple';tempItem = tempItem[k];fieldType = value.type || value" 
+					ng-repeat="(key, value) in value.content" 
+					ng-if="key!='isArray'"
+					ng-include="'fieldTree'"></div>
+				</div>
+				<div ng-if="value.isArray" class="panel-body " ng-init="tempItem[key] =tempItem[key] || []">
+					<div ng-repeat="zzz in tempItem[k]" class="col-sm-12 panel panel-default">
+						<div class="form-group" 
+						ng-init="selectMode = 'multiple';tempItem = zzz;fieldType = value.type || value" 
+						ng-repeat="(key, value) in value.content" 
+						ng-if="key!='isArray'"
+						ng-include="'fieldTree'"></div>
+					</div>
+					<span ng-click="tempItem[key].push(getFields(value));" class="btn btn-success glyphicon glyphicon-plus"></span>
+					<span ng-click="tempItem[key].pop();" class="btn btn-danger glyphicon glyphicon-remove"></span>
+				</div>
+			</div>
+	</div>	
+</script>

@@ -1,0 +1,50 @@
+
+<style>
+	.graph 
+	{
+		display: block;
+		width: 100%; height:300px;
+		position : relative;
+	}
+	#tooltip
+	{
+		z-index : 100;
+	}
+</style>
+{{azara}}<br>
+
+<div class="col-sm-12 graph4 col-xs-12">
+	<div class="panel panel-default ">
+		<div class="panel-body">
+			<div ng-show="wait" style="width: {{canvW}}px; height: {{canvH}}px;" class="wait">
+				<img class="wait-img" src="public/img/ajax-loader.gif"/>
+			</div>
+			<div ng-show="error" style="width: {{canvW}}px; height:{{canvH}}px;" class="error">
+				<div class="error-text">Error</div>
+			</div>
+			<!-- Graph -->		
+			<ng-graph class="graph" ng-model='data' change='change' data='data'></ng-graph>  
+			<!-- End Graph -->
+
+				<!--   -->
+			<div class="row col-md-12">
+				<div class="col-md-12 mgt10" 
+					ng-init="init('Start from',graphDetails.start_relative)" 
+					ng-include="template"
+					ng-controller='unitValueController'></div>
+				<div class="col-md-12 mgt10" 
+					ng-init="init('Interval',graphDetails.interval)" 
+					ng-include="template"
+					ng-controller='unitValueController'></div>
+			</div>
+			<!--  -->
+			<!-- Native Graph Buttons -->
+			<div class="col-md-12">
+				<div class="col-md-12 mgt10"> 	
+					<button ng-click="change()" class="btn-toolbar refreshGraph btn btn-default">Refresh Graph</button>
+				</div>
+			</div>
+			<!-- End Native Graph Buttons -->
+		</div>
+	</div>
+</div>

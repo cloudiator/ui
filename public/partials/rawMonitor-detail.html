@@ -1,0 +1,20 @@
+<div ng-include="'public/partials/crud-detail.html'"></div>
+<!--{{item}}-->
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Monitors</h3>
+	</div>
+	<div class="panel-body">
+		<div class = "row">
+			<div>
+				<div class="col-md-6 mgt10" 
+						ng-repeat="(k,v) in item.monitorInstances"
+						ng-init="init2(v.id, v.metricName, v.apiEndpoint)" 
+						ng-include="chart.url"
+						ng-controller='ChartsCtrl'
+						id="graph-num-{{k}}">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

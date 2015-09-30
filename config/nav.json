@@ -1,0 +1,69 @@
+[
+	{"apiObject" : "ipAddress","name" : "ip address"},
+	{
+		"name" : "application", 
+		"group" : 
+		[
+			{"apiObject" : "application"},
+			{"apiObject" : "applicationComponent"},
+			{"apiObject" : "instance"},
+			{"apiObject" : "component"},
+			{"apiObject" : "communication"}
+		]
+	},
+	{
+		"name" : "monitors", 
+		"group" : 
+		[
+			{"apiObject" : "monitorInstance"},
+			{"apiObject" : "rawMonitor"},
+			{"apiObject" : "composedMonitor"},
+			{"apiObject" : "constantMonitor"}
+		]
+	},
+	{
+		"name" : "virtualMachine", 
+		"group" : 
+		[
+			{"apiObject" : "virtualMachine"},
+			{"apiObject" : "virtualMachineTemplate"},
+			{"apiObject" : "api"},
+			{"apiObject" : "cloud"}
+		]
+	},
+	{
+		"name" : "image" , 
+		"group" : 
+		[
+			{"apiObject" : "image"},
+			{"apiObject" : "operatingSystem"},
+			{"apiObject" : "operatingSystemVendor"}
+		]
+	},
+	{
+		"name" : "hardware" , 
+		"group" : 
+		[
+			{"apiObject" : "hardware"},
+			{"apiObject" : "hardwareOffer"}
+		]
+	},
+	{
+		"name" : "location" , 
+		"group" : 
+		[
+			{"apiObject" : "location"},
+			{"apiObject" : "geoLocation"}
+		]
+	},
+	{
+		"name" : "Configuration" , 
+		"group" : 
+		[
+			{"apiObject" : "frontendUser"},
+			{"apiObject" : "tenant"},
+			{"apiObject" : "cloudCredential"}
+		]
+	},
+	{"apiObject" : "applicationInstance"}
+]
