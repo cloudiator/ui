@@ -72,8 +72,9 @@ class RestController
 	{
 		$service = static::getService("login");
 		$putData =  static::getRequestContent();
-		$service::login($putData->email,$putData->password);
-		return "";
+		//if()
+		//$service::login($putData->email,$putData->password);
+		return true;
 	}
 	
 	public static function logout()

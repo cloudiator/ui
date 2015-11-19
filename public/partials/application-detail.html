@@ -68,7 +68,7 @@
 			<div class="row">
 			<!-- ng class to col-12 -->
 				<div class="col-lg-9 col-xs-10" style="padding-top : 10px;padding-bottom : 10px;">	
-					<h3 class="no-margin-v">applicationComponent List</h3>
+					<h3 class="no-margin-v">applicationComponents</h3>
 				</div>
 				<div ng-if="apiObjectHave('put')"
 				 class="col-lg-3 col-xs-2 text-center no-padding td-button td-button-edit" 
@@ -81,8 +81,19 @@
 				</div>					
 			</div>
 		</div>
+
 		<div class="panel-body"> 
 	    	<div class="col-md-3" ng-repeat="thing in item.applicationComponents" >
+
+				<div ng-controller="emptyCtrl"
+        			ng-init="	
+    				thing.isCollapsed = true;
+    				vmt_removable=false;
+    				comp_removable=false;"
+    				ng-include=" 'md-vmt.htm' ">
+				</div>
+
+			<!--
 				<div class="panel panel-primary">
 					<div class="panel-heading"> 
 						{{thing.id}} ( VMT : {{thing.virtualMachineTemplate}} )
@@ -93,8 +104,13 @@
 						</div>
 					</div>
 				</div>
+			-->
 			</div>
 		</div>
+
+
+
+
 	</div>
 </div>
 
@@ -103,7 +119,7 @@
 		<div class="panel-heading" style="padding-top:0; padding-bottom:0;"> 
 			<div class="row">
 				<div class="col-lg-9 col-xs-10" style="padding-top : 10px;padding-bottom : 10px;">	
-					<h3 class="no-margin-v">Communications List</h3>
+					<h3 class="no-margin-v">Communications</h3>
 				</div>
 				<div ng-if="apiObjectHave('put')"
 				 class="col-lg-3 col-xs-2 text-center no-padding td-button td-button-edit" 
@@ -118,9 +134,9 @@
 		</div>
 		<div class="panel-body">
 		    <div class="row">
-		    	<div class="col-md-12" ng-repeat="communication in item.communications">
+		    	<div class="col-md-12 col-lg-6" ng-repeat="communication in item.communications">
 					<div class="panel panel-info">
-						<div class="panel-heading"> 
+						<div class="panel-heading" > 
 							Communication number {{communication.id}}
 						</div>
 						<div class="panel-body" style="min-height:40px;">
@@ -133,7 +149,7 @@
 							        	<div ng-controller="emptyCtrl"
 							        			ng-init="	
 						        				thing = item.applicationComponentsById[item.portProvs[communication.providedPort].applicationComponent];
-						        				
+						        				thing.isCollapsed = true;
 						        				vmt_removable=false;
 						        				comp_removable=false;"
 						        			ng-include=" 'md-vmt.htm' ">
@@ -199,13 +215,14 @@
 
 <script type="text/ng-template" id="md-vmt.htm">
 	<div class="panel panel-primary panel-xs">
-		<div class="panel-heading" style="padding-top:0; padding-bottom:0;"> 
+		<div class="panel-heading" style="padding-top:0; padding-bottom:0;" ng-click="thing.isCollapsed = !thing.isCollapsed"> 
 			<div class="row">
 			<!-- ng class to col-12 -->
-				<div class="col-md-9" style="padding-top : 10px;padding-bottom : 10px;">	
+				<div class="col-md-12" style="padding-top : 8px;padding-bottom : 8px;">	
 					<span ng-if="title!==undefined">{{title}}</span>
-					<span ng-if="title===undefined">VMT : {{thing.id}} </span>		
+					<span ng-if="title===undefined">ApplicationComponent {{thing.id}} </span>		
 				</div>
+
 				<div ng-if="vmt_removable" class="col-md-3 text-center no-padding td-button td-button-delete" ng-click="currentList.splice($index, 1)">
 					<div data-original-title="delete" data-toggle="tooltip" data-placement="top" title="" tooltip="">
 
@@ -213,10 +230,14 @@
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</span>
 					</div>					
-				</div>				
+				</div>	
+				<div ng-show="thing.isCollapsed" class="col-md-12" style="background:#49d;padding-top : 8px;padding-bottom : 8px;">	
+					<span ng-if="title!==undefined">{{title}}</span>
+					<span ng-if="title===undefined"> VMT-{{thing.virtualMachineTemplate}} </span>		
+				</div>			
 			</div>
 		</div>
-		<div class="panel-body" 
+		<div ng-show="thing.isCollapsed" class="panel-body" 
 			ng-class="{ 'dotted-border' : thing.components.length == 0 }"
 			style="min-height:40px;" 
 		    dnd-list="thing.components" 

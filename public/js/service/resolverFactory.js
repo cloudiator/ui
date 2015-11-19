@@ -35,6 +35,7 @@ crudFactories.factory('resolverFactory', function ($rootScope,$location)
 		resolveError : function(data, status)
 		{
 			$rootScope.loading = false;
+			$rootScope.logged = false;
 			if(status==401)
 			{
 				$rootScope.logged = false;	

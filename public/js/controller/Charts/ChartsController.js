@@ -34,9 +34,10 @@ crudControllers.controller('ChartsCtrl', function($scope,$interval,$http,ajaxFac
 		$scope.init(monitorInstance);
 	}
 
-
 	$scope.init = function(monitorInstance) 
 	{
+
+			$scope.wait = false;
 		$scope.graphDetails = {};
 		$scope.graphDetails.monitorInstance = monitorInstance.id;
 		
@@ -79,30 +80,41 @@ crudControllers.controller('ChartsCtrl', function($scope,$interval,$http,ajaxFac
 	$scope.change = function() 
 	{
 		//TODO add a protection like a synchronized thread (a variable that is false durring the ajax and would hide/enabled the inputs)
-		
-		$scope.wait = true;
-		$scope.error = false;
-		
-		//to change to "pure" angularjs code
-		var graph = $("#graph-num-"+$scope.k);
-		$scope.canvW = graph.find("canvas").width();
-		$scope.canvH = graph.find("canvas").height();
-
-		//$scope.azara = $scope.graphDetails;
-		console.log($scope.graphDetails);
-		ajaxFactory.post("charts",$scope.graphDetails).then(function(data, status, headers, config)
-		{		
-			//$scope.azara = data;
-			$scope.data = getInfoChart(data.queries);
-			$scope.wait = false;
-		},
-		function(data, status, headers, config) 
+		if($scope.wait == false)
 		{
-			$scope.wait = false;
-			$scope.error = true;
-		});	
-	};	
+			$scope.wait = true;
+			$scope.error = false;
+			
+			//to change to "pure" angularjs code
+			var graph = $("#graph-num-"+$scope.k);
+			$scope.canvW = graph.find("canvas").width();
+			$scope.canvH = graph.find("canvas").height();
+
+			//$scope.azara = $scope.graphDetails;
+			console.log($scope.graphDetails);
+			ajaxFactory.post("charts",$scope.graphDetails).then(function(data, status, headers, config)
+			{		
+				//$scope.azara = data;
+				if(data &&data.queries)
+				{
+					$scope.data = getInfoChart(data.queries);
+				}
+				else
+				{
+
+				}
+				$scope.wait = false;
+			},
+			function(data, status, headers, config) 
+			{
+				$scope.wait = false;
+				$scope.error = true;
+			});	
+		}
+	};
+
 	$scope.interval = $interval($scope.change,10000);
+
 	$scope.$on("$destroy", function(){
 		$interval.cancel($scope.interval);
 	});

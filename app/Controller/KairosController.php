@@ -22,9 +22,7 @@
  
 class KairosController extends RestController
 {
-
 	public static $SERVICE = 'KairosService';
-
 
 	public static function getChart()
 	{		

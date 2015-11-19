@@ -56,7 +56,7 @@ class Dispatcher
 		switch ($controller_route) 
         {
                 case "": 
-                    $GLOBALS["return"] = "";
+                    $GLOBALS["return"] = null;
 
 					//client side
 					$GLOBALS['client']['apisObjects'] = json_decode(file_get_contents("config/apisObjects.json"), true);

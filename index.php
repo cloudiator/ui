@@ -98,5 +98,5 @@ if(isset($GLOBALS["return"]))
 }
 else
 {
-	echo "error return";
+	//echo "error return";
 }

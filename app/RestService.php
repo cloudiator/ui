@@ -294,6 +294,7 @@ class RestService
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_HEADER, TRUE);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 8); //timeout in seconds
 		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$api_response = curl_exec($ch);
 		$api_response_info = curl_getinfo($ch);
