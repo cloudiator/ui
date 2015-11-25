@@ -105,10 +105,6 @@ class Route
 	{
 		$params = explode('/', $path);
 		$nb = count($params);
-		/*if($nb>2)// && $params[2] == "allBy")
-		{
-			echo($_SERVER['REQUEST_URI']);
-		}*/
 		if($nb==count($routes))
 		{
 			$argArray = array();

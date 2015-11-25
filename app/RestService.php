@@ -240,7 +240,9 @@ class RestService
     {
 		$entityName = Tools::getApiEntityName($apiname);	
     	$url ="/$entityName";
-		$result = static::getResponse($url,'POST', $putData, $apiname);		
+
+		$result = static::getResponse($url,'POST', $putData, $apiname);
+	
 		return static::parseResult($result);
     }
 
@@ -256,11 +258,11 @@ class RestService
  /*									*/ 
 /***********************************/  
 
-	public static function getResponse($url,$method,$putData,$apiname)
+	public static function getResponse($url,$method,$data,$apiname)
 	{
 		$result = null;
 		$url = Tools::getApiInfo($apiname)['url'].$url;
-		list($result, $var) = static::makeRequest($url,$method,$putData);
+		list($result, $var) = static::makeRequest($url,$method,$data);
 		http_response_code(intval($var));
 		return json_decode($result);
 	}

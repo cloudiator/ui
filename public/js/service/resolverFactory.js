@@ -30,7 +30,7 @@ crudFactories.factory('resolverFactory', function ($rootScope,$location)
 			//TODO link the error click here
 			//$rootScope.clearError();
 			//$rootScope.debug = data;
-			//console.log(data);
+			console.log(data);
 		},
 		resolveError : function(data, status)
 		{
@@ -58,7 +58,7 @@ crudFactories.factory('resolverFactory', function ($rootScope,$location)
 			}
 			$rootScope.errors = data;
 			//
-			//console.log(data);
+			console.log(data);
 		}
 	};
 	return factory;

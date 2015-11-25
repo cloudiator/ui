@@ -25,16 +25,14 @@ class ApplicationService extends ColosseumService
   /***********************************/
  /*									*/
 /***********************************/
-    public static function createOne($json_url, $putData)
+    public static function createOne($json_url, $postData)
     {
-    	$postData = json_decode($putData);
-		$application = parent::createOne($json_url, json_encode($postData->application));		
-
+		$application = parent::createOne($json_url, $postData->application);
 		$applicationComponents = [];
 		foreach ($postData->applicationComponents as $key => $value) 
 		{			
 			$value->application = $application->id;
-			$applicationComponents[] =  parent::createOne("/ac", json_encode($value));	
+			$applicationComponents[] =  parent::createOne("/ac", $value);	
 		}
 
 		foreach ($postData->communications as $key => $value) 
@@ -45,7 +43,7 @@ class ApplicationService extends ColosseumService
 				"port" => 8080
 			];
 
-			$applicationComponents[] =  parent::createOne("/communication", json_encode($communication));	
+			$applicationComponents[] =  parent::createOne("/communication", $communication);	
 		}	
 		$postData->id = $application->id;
 		return static::parseResult($application);
@@ -54,10 +52,7 @@ class ApplicationService extends ColosseumService
 	public static function updateOne($apiname,$val, $putData)
     {		
     	$url ="/$apiname/$val";
-    	$putData = json_decode($putData);
-    	$application = json_encode([ "name" => $putData->name ]);
-	
-		$result = static::getResponse($url,'PUT', $application);
+		$result = static::getResponse($url,'PUT', [ "name" => $putData->name ]);
 		if($putData->commands)
 		{
 			foreach ($putData->commands as $key => $value) 

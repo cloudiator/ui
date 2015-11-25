@@ -46,9 +46,9 @@ crudFactories.factory('ajaxFactory', function ($http,$q,$rootScope,$location,res
 			$http(req)
 			.success(function(data, status)
 			{
-				console.log(url);
+				/*console.log(url);
 				console.log(data);
-				console.log(status);
+				console.log(status);*/
 				deferred.resolve(data);
 				resolverFactory.resolveSuccess(data, status);
 			})

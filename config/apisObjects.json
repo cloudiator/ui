@@ -157,12 +157,7 @@
 			"cloud" : "apiObject" , 
 			"hardwareOffer" : "apiObject" , 
 			"remoteId" : "string",
-			"locations" :
-			{  
-				"isArray" : true,
-				"type" : "apiObject",
-				"name" : "location"
-			},
+			"location" : "apiObject",
 			"cloudCredentials": 
 			{  
 				"isArray" : true,
@@ -190,12 +185,8 @@
 			"name" : "string" , 
 			"cloud" : "apiObject" , 
 			"remoteId" : "string",
-			"locations" :
-			{
-				"isArray" : true,
-				"type" : "apiObject",
-				"name" : "location"
-			},
+			"location" : "apiObject",
+			"imageOffer" :"string",
 			"cloudCredentials":
 			{
 				"isArray" : true,
@@ -251,6 +242,7 @@
  
 		"form" : 
 		{ 
+			"name" : "string" , 
 			"cloud" : "apiObject" , 
 			"remoteId":"string",
 			"parent":
