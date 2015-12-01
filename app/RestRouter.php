@@ -45,7 +45,9 @@ class RestRouter
 	{
 		$controller = static::getController($apiname);
 
-		Route::get('info', 		$controller.'::info',		$routes,$request_type);
+		Route::get('info2', $controller.'::info2',		$routes,$request_type);
+		Route::get('info', 	$controller.'::info',		$routes,$request_type);
+
 		Route::post('login', 		$controller.'::login',		$routes,$request_type);
 		Route::get('login', 		$controller.'::isLogged',		$routes,$request_type);
 		Route::any('logout', 		$controller.'::logout',		$routes,$request_type);

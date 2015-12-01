@@ -58,7 +58,6 @@ class RestController
  /*									*/
 /***********************************/
 	
-	
 	public static function login()
 	{
 		$service = static::getService("login");
@@ -67,14 +66,16 @@ class RestController
 		return "";
 	}
 
-	
 	public static function info()
 	{
-
 		header('Content-Type: application/json');
 		return $GLOBALS['config'];
 	}
-
+	public static function info2()
+	{
+		header('Content-Type: application/json');
+		return $GLOBALS['path'];
+	}
 
 	public static function isLogged()
 	{

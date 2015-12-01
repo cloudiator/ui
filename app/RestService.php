@@ -269,13 +269,13 @@ class RestService
 
 	public static function makeRequest($url, $method, $data)
 	{ 
-		echo "<hr/>";
+		/*echo "<hr/>";
 		echo "<br>URL :<br>";
 		var_dump($url);
 		echo "<br>Method :<br>";
 		var_dump($method);
 		echo "<br>data :<br>";
-		var_dump($data);
+		var_dump($data);*/
 		$ch = curl_init();
 		switch ($method)
 		{
@@ -314,10 +314,10 @@ class RestService
 		$result = substr($api_response, $api_response_info['header_size']);
 		$code = $api_response_info['http_code'];
 
-		echo "<br>code :<br>";
+		/*echo "<br>code :<br>";
 		var_dump($code);
 		echo "<br>result :<br>";
-		var_dump($result);
+		var_dump($result);*/
 
 		return array($result, $code);
 	}
