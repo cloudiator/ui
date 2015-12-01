@@ -27,7 +27,8 @@ var paasageApp = angular.module('paasageApp', [
   /*'btford.dragon-drop',*/
   'crudControllers',
   'crudFactories',
-  'paasageFilters'
+  'paasageFilters',
+  'ui.bootstrap'
 ]);
 
 paasageApp.config(

@@ -24,6 +24,19 @@
 
 crudControllers.controller('CrudListCtrl', function($scope,$rootScope,$location,$routeParams,ajaxFactory)
 {
+	$scope.setPage = function (pageNo) {
+		$scope.currentPage = pageNo;
+	};
+
+	$scope.pageChanged = function() {
+		console.log('Page changed to: ' + $scope.currentPage);
+	};
+
+	$scope.setItemsPerPage = function(num) {
+		$scope.itemsPerPage = num;
+		$scope.currentPage = 1; //reset to first page
+	}
+
 	$scope.clearError();
 	$scope.apiname = $routeParams.apiname;
 	$scope.url = $scope.apiname+"/";
@@ -32,6 +45,12 @@ crudControllers.controller('CrudListCtrl', function($scope,$rootScope,$location,
 	ajaxFactory.get($scope.url).then(function(data)
 	{
 		$scope.data = data;
+
+		$scope.viewby = 10;
+		$scope.totalItems = $scope.data.length;
+		$scope.currentPage = 1;
+		$scope.itemsPerPage = $scope.viewby;
+		$scope.maxSize = 10; //Number of pager buttons to show
 	});	
 
 	$scope.del = function(item) 

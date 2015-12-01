@@ -26,6 +26,7 @@ crudControllers.controller('mainCtrl', function($scope, $rootScope, $route, $rou
 	$rootScope.apisObjects =  mainConfig["apisObjects"];
 	$rootScope.logged = false;
 	$scope.route = $route;
+	$scope.debug = $routeParams.debug;
 
 	/*
 	$scope.getApiUrl = function()

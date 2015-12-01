@@ -64,7 +64,7 @@ function include_all_javascript($folder)
 		<script src="public/ext/bootstrap/js/collapse.js"></script>	
 		<script src="public/ext/bootstrap/js/transition.js"></script>	
 		<script src="public/ext/bootstrap/js/tooltip.js"></script>	
-		
+
 		<!-- Bootstrap SB ADMIN-->
 		<link rel="stylesheet" type="text/css" href="public/ext/startbootstrap-sb-admin-1.0.3/css/sb-admin.css"/>
 
@@ -78,6 +78,10 @@ function include_all_javascript($folder)
 		<link href="public/ext/bootstrap-touchspin-dist/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet">					
 		<script src="public/ext/bootstrap-touchspin-dist/js/jquery.bootstrap-touchspin.min.js"></script>
 		
+
+		<!-- UI-Bootstrap -->
+		<script src="public/ext/ui-bootstrap-tpls-0.14.3.min.js"></script>	
+
 		<!-- Mine 				-->
 		<link href="public/css/style.css" rel="stylesheet">
 		<script src="public/js/chartscript.js"></script>
@@ -108,7 +112,7 @@ function include_all_javascript($folder)
 			</div>
 			<div ng-include="'public/partials/navbar.html'"></div>
 			<div id="page-wrapper">
-				<div ng-click="clearError()" ng-if="errors" class="container-fluid alert alert-danger" role="alert">
+				<div ng-if="debug" ng-click="clearError()" class="container-fluid alert alert-danger" role="alert">
 				  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 				  <span class="sr-only">Error:</span>
 				  {{errors}}
