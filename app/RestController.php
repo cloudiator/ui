@@ -67,6 +67,14 @@ class RestController
 		return "";
 	}
 
+	
+	public static function info()
+	{
+
+		header('Content-Type: application/json');
+		return $GLOBALS['config'];
+	}
+
 
 	public static function isLogged()
 	{
