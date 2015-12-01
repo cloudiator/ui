@@ -72,6 +72,7 @@ class RestController
 	{
 		$service = static::getService("login");
 		$putData =  static::getRequestContent();
+		//TODO get login and use the code number (200 ok, 401 ko)
 		//if()
 		//$service::login($putData->email,$putData->password);
 		return true;

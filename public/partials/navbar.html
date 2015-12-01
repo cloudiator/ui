@@ -20,7 +20,7 @@
 			<ul id="mainNav" class="nav navbar-nav side-nav" >
 				<li ng-show='logged' ng-repeat="api in nav" class="dropdown">
 					<a 	class="active" ng-if="api.group == null" ng-init="title = 'api.name'" 
-					href="#/{{api.apiObject}}"
+					href="javascript:;"
 					ng-class="{'selected':selectedTab == api.apiObject }" 
 					ng-click="setSelectedTab(api.apiObject)">
 						{{api.name || api.apiObject}}
@@ -38,7 +38,7 @@
 					</a>
 					<ul ng-if="api.group != null"  class="collapse" id="{{api.name || api.apiObject}}">
 						<li ng-repeat-start="subapi in api.group" >
-							<a href="#/{{subapi.apiObject}}"
+							<a 	href="javascript:;"
 								ng-class="{'selected':selectedTab == subapi.apiObject }" 
 								ng-click="setSelectedTab(subapi.apiObject)">
 								{{subapi.name || subapi.apiObject}}</a>

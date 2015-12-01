@@ -23,6 +23,7 @@
 
 crudControllers.controller('AbstractFormCtrl', function($scope,$rootScope,$location,$routeParams,ajaxFactory)
 {
+	$scope.debug = $routeParams.debug;
 	$scope.clearError();
 	$scope.types =  mainConfig["enums"];
 	$scope.apiname = $routeParams.apiname;

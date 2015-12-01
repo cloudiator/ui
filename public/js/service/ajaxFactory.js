@@ -41,22 +41,25 @@ crudFactories.factory('ajaxFactory', function ($http,$q,$rootScope,$location,res
 				url: url,
 				data: { params }
 			};
-			
-			//console.log(url);
+			debug("------------","ajaxFactory","------------");
+			debug("url : ",url);
 			$http(req)
 			.success(function(data, status)
 			{
-				/*console.log(url);
-				console.log(data);
-				console.log(status);*/
+				debug("success : ",data,"status : ",status);
 				deferred.resolve(data);
 				resolverFactory.resolveSuccess(data, status);
 			})
 			.error(function(data, status) 
 			{	
+				debug("error : ",data,"status : ",status);
 				deferred.reject(data);
 				resolverFactory.resolveError(data, status);
-			});
+			})
+			.finally(function() 
+			{
+				debug("============");
+			});;
 	
 			return deferred.promise;
 		},
@@ -166,7 +169,6 @@ crudFactories.factory('ajaxFactory', function ($http,$q,$rootScope,$location,res
 			}
 			return reqopt;
 		},
-		
 		isArray : function(array)
 		{
 			return angular.isArray(array);// || (angular.isObject(array) && array.isArray);

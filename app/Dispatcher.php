@@ -62,7 +62,8 @@ class Dispatcher
 					$GLOBALS['client']['apisObjects'] = json_decode(file_get_contents("config/apisObjects.json"), true);
 					$GLOBALS['client']['self'] = $GLOBALS['path']['base'];
 					$GLOBALS['client']['nav'] = json_decode(file_get_contents("config/nav.json"));
-					$GLOBALS['client']['enums'] = json_decode(file_get_contents("config/enums.json"), true); //ok
+					$GLOBALS['client']['enums'] = json_decode(file_get_contents("config/enums.json"), true);
+					$GLOBALS['client']['env'] = "dev";
 
                     //$GLOBALS["return"] = file_get_contents(__DIR__.'/View/main.php');
                     include __DIR__.'/main.php';

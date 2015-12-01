@@ -40,7 +40,7 @@ paasageFilters.filter('optionsFilter', function()
 			}
 			if(typeof dependencyName !== "undefined")
 			{
-				console.log(dependencyName);
+				//console.log(dependencyName);
 				for (var i = 0; i < items.length; i++)
 				{
 					var item = items[i];

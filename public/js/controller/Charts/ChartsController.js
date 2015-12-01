@@ -91,7 +91,7 @@ crudControllers.controller('ChartsCtrl', function($scope,$interval,$http,ajaxFac
 			$scope.canvH = graph.find("canvas").height();
 
 			//$scope.azara = $scope.graphDetails;
-			console.log($scope.graphDetails);
+			debug("graphDetails :",$scope.graphDetails);
 			ajaxFactory.post("charts",$scope.graphDetails).then(function(data, status, headers, config)
 			{		
 				//$scope.azara = data;

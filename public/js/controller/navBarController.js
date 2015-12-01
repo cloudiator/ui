@@ -40,6 +40,6 @@ crudControllers.controller('NavBarCtrl', function($scope,$location,ajaxFactory)
 	$scope.setSelectedTab = function(name) 
 	{
 		$scope.selectedTab = name;
+		$location.path(name);
 	};
-
 });

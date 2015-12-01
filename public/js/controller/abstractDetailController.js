@@ -33,9 +33,6 @@ crudControllers.controller('AbstractDetailCtrl', function($rootScope,$scope,$loc
 		ajaxFactory.get($scope.url).then(function(data)
 		{
 			$scope.item =  data;
-		},function(data)
-		{
-			console.log(data);
 		});	
 	};
 

@@ -1,13 +1,18 @@
-<!--  
-	currentForm : {{currentForm}}<br>
-	currentForms : {{currentForms}} 
--->	{{item}}<br>
-	{{currentForms}}<br>
-	{{options}}
-
+<div ng-if="debug" class="panel panel-success"> 
+	<div ng-if="debug" class="panel-heading"> 
+	currentForm : {{item}}
+	</div>
+	<div ng-if="debug" class="panel-heading"> 
+	currentForms : {{currentForms}} <br>
+	</div>
+	<div ng-if="debug" class="panel-heading"> 
+	options : {{options}}<br>
+	</div>
+</div>
+<!--  -->
 <div class="row">
 	<h1 class="col-sm-6">{{crudTitle}} {{apiname}}</h1>
-	<h2 ng-if="item.id" class="col-sm-6"> id : {{item.id}}</span></h2>
+	<h2 ng-if="item.id" class="col-sm-6"> id : {{item.id}}</h2>
 </div>
 <form class="form-horizontal">
 <!-- item: {{item}} -->
