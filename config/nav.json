@@ -22,16 +22,6 @@
 		]
 	},
 	{
-		"name" : "VirtualMachine", 
-		"group" : 
-		[
-			{"apiObject" : "virtualMachine"},
-			{"apiObject" : "virtualMachineTemplate"},
-			{"apiObject" : "api"},
-			{"apiObject" : "cloud"}
-		]
-	},
-	{
 		"name" : "Configuration" , 
 		"group" : 
 		[
@@ -41,19 +31,11 @@
 		]
 	},
 	{
-		"name" : "Communication", 
+		"name" : "Cloud", 
 		"group" : 
 		[
-			{"apiObject" : "applicationComponent"},
-			{"apiObject" : "communication"},
-			{"apiObject" : "requiredPort"},
-			{"apiObject" : "providedPort"}
-		]
-	},
-	{
-		"name" : "ProviderComponents", 
-		"group" : 
-		[
+			{"apiObject" : "cloud"},
+			{"apiObject" : "api"},
 			{"apiObject" : "image"},
 			{"apiObject" : "operatingSystem"},
 			{"apiObject" : "operatingSystemVendor"},
@@ -61,6 +43,17 @@
 			{"apiObject" : "hardwareOffer"},
 			{"apiObject" : "location"},
 			{"apiObject" : "geoLocation"}
+		]
+	},
+	{
+		"name" : "Other", 
+		"group" : 
+		[
+			{"apiObject" : "virtualMachineTemplate"},
+			{"apiObject" : "applicationComponent"},
+			{"apiObject" : "communication"},
+			{"apiObject" : "requiredPort"},
+			{"apiObject" : "providedPort"}
 		]
 	}
 ]
