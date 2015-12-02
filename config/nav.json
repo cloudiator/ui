@@ -1,20 +1,18 @@
 [
-	{"apiObject" : "ipAddress","name" : "ip address"},
 	{
-		"name" : "application", 
+		"name" : "Dashboard", 
 		"group" : 
 		[
 			{"apiObject" : "application"},
-			{"apiObject" : "applicationComponent"},
 			{"apiObject" : "instance"},
 			{"apiObject" : "component"},
-			{"apiObject" : "communication"},
-			{"apiObject" : "requiredPort"},
-			{"apiObject" : "providedPort"}
+			{"apiObject" : "ipAddress","name" : "ip address"},
+			{"apiObject" : "virtualMachine"},
+			{"apiObject" : "applicationInstance"}
 		]
 	},
 	{
-		"name" : "monitors", 
+		"name" : "Monitors", 
 		"group" : 
 		[
 			{"apiObject" : "monitorInstance"},
@@ -24,38 +22,13 @@
 		]
 	},
 	{
-		"name" : "virtualMachine", 
+		"name" : "VirtualMachine", 
 		"group" : 
 		[
 			{"apiObject" : "virtualMachine"},
 			{"apiObject" : "virtualMachineTemplate"},
 			{"apiObject" : "api"},
 			{"apiObject" : "cloud"}
-		]
-	},
-	{
-		"name" : "image" , 
-		"group" : 
-		[
-			{"apiObject" : "image"},
-			{"apiObject" : "operatingSystem"},
-			{"apiObject" : "operatingSystemVendor"}
-		]
-	},
-	{
-		"name" : "hardware" , 
-		"group" : 
-		[
-			{"apiObject" : "hardware"},
-			{"apiObject" : "hardwareOffer"}
-		]
-	},
-	{
-		"name" : "location" , 
-		"group" : 
-		[
-			{"apiObject" : "location"},
-			{"apiObject" : "geoLocation"}
 		]
 	},
 	{
@@ -67,5 +40,27 @@
 			{"apiObject" : "cloudCredential"}
 		]
 	},
-	{"apiObject" : "applicationInstance"}
+	{
+		"name" : "Communication", 
+		"group" : 
+		[
+			{"apiObject" : "applicationComponent"},
+			{"apiObject" : "communication"},
+			{"apiObject" : "requiredPort"},
+			{"apiObject" : "providedPort"}
+		]
+	},
+	{
+		"name" : "ProviderComponents", 
+		"group" : 
+		[
+			{"apiObject" : "image"},
+			{"apiObject" : "operatingSystem"},
+			{"apiObject" : "operatingSystemVendor"},
+			{"apiObject" : "hardware"},
+			{"apiObject" : "hardwareOffer"},
+			{"apiObject" : "location"},
+			{"apiObject" : "geoLocation"}
+		]
+	}
 ]

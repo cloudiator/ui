@@ -143,31 +143,47 @@ class RestService
 			$fkList = static::getFKList($GLOBALS['currentobject']["form"]);
 			foreach ($result as $key1 => $value1) 
 			{
-				foreach ($fkList as $key2 => $value2) 
+				foreach ($fkList as $fkFieldName => $fkApiObjectName) 
 				{
-					if(isset($value1->$key2)  && 
-						!(isset($GLOBALS['config']['apisObjects'][$apiname]["form"][$key2]["isArray"]) && 
-							$GLOBALS['config']['apisObjects'][$apiname]["form"][$key2]["isArray"]==true))
+
+					if(isset($value1->$fkFieldName)  && 
+						!(isset($GLOBALS['config']['apisObjects'][$apiname]["form"][$fkFieldName]["isArray"]) && 
+							$GLOBALS['config']['apisObjects'][$apiname]["form"][$fkFieldName]["isArray"]==true))
 					{
-						if(is_array($value2))
+
+
+
+						if(is_array($fkApiObjectName))
 						{
 							$cont = true;
 
-
-							foreach ($value2 as $key3 => $value3) 
+							foreach ($fkApiObjectName as $key3 => $value3) 
 							{
-								if($cont && isset($apiObjects[$value3][$value1->$key2]))
+								if($cont && isset($apiObjects[$value3][$value1->$fkFieldName]))
 								{
-									$current = $apiObjects[$value3][$value1->$key2];
-									$result[$key1]->$key2 = Tools::convertToField($current,$value3);
+									$current = $apiObjects[$value3][$value1->$fkFieldName];
+									$result[$key1]->$fkFieldName = Tools::convertToField($current,$value3);
 									$cont = false;
 								}
 							}
 						}
 						else
 						{
-							$current = $apiObjects[$value2][$value1->$key2];
-							$result[$key1]->$key2 = Tools::convertToField($current,$value2);
+
+							$current = $apiObjects[$fkApiObjectName][$value1->$fkFieldName];
+							$result[$key1]->$fkFieldName = Tools::convertToField($current,$fkApiObjectName);
+						}
+					}
+					else
+					{
+						if(isset($value1->$fkFieldName) && !is_array($fkApiObjectName))
+						{
+							$currents = [];
+							foreach ($value1->$fkFieldName as $key3 => $value3) 
+							{
+								$currents[] = $apiObjects[$fkApiObjectName][$value3];
+							}
+							$result[$key1]->$fkFieldName = Tools::convertToFields($currents,$fkApiObjectName);
 						}
 					}
 				}
