@@ -8,7 +8,9 @@
 			{"apiObject" : "applicationComponent"},
 			{"apiObject" : "instance"},
 			{"apiObject" : "component"},
-			{"apiObject" : "communication"}
+			{"apiObject" : "communication"},
+			{"apiObject" : "requiredPort"},
+			{"apiObject" : "providedPort"}
 		]
 	},
 	{

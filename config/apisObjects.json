@@ -88,25 +88,8 @@
 		"api" : "colosseumapi",
 		"form" : 
 		{
-			"requiredPort" :  
-			{
-				"type" : "internalObject",
-				"content" : 
-				{
-					"name" : "string",
-					"applicationComponent" :  "apiObject"
-				}
-			},					
-			"providedPort" :  
-			{
-				"type" : "internalObject",
-				"content" : 
-				{
-					"name" : "string",
-					"applicationComponent" :  "apiObject",
-					"port" : "int"
-				}
-			}
+			"requiredPort" : "apiObject",					
+			"providedPort" :  "apiObject"
 		}
 	},
 	"tenant" :  
