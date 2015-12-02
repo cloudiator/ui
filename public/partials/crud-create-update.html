@@ -82,7 +82,7 @@
 						<option ng-repeat-start="(keyv, valuev) in value['name']" disabled>{{valuev}}</option>
 						<option 
 							ng-repeat="option in options[value['name'][keyv]] || options[keyv]  | optionsFilter:apiname:k:item" value="{{option.id}}" 
-							ng-selected="tempItem[key]==option.id">{{option.id}}</option>
+							ng-selected="tempItem[key]==option.id">{{option.id}} : {{option.name}}</option>
 						<option ng-repeat-end disabled></option>
 					</select>
 
@@ -90,7 +90,7 @@
 						<option ng-repeat-start="(keyv, valuev) in value['name']" disabled>{{valuev}}</option>
 						<option 
 							ng-repeat="option in options[value['name'][keyv]] || options[keyv]  | optionsFilter:apiname:k:item"
-							value="{{option.id}}">{{option.id}}</option>
+							value="{{option.id}}">{{option.id}} : {{option.name}}</option>
 						<option ng-repeat-end disabled></option>
 					</select>
 
@@ -98,12 +98,12 @@
 					<select ng-if="!isArray(value['name']) && !value.isArray" ng-model='tempItem[key]' class="form-control">
 						<option 
 						ng-repeat="option in options[value['name']] || options[key]  | optionsFilter:apiname:k:item" value="{{option.id}}" 
-						ng-selected="tempItem[key]==option.id">{{option.id}}</option>
+						ng-selected="tempItem[key]==option.id">{{option.id}} : {{option.name}}</option>
 					</select>
 
 					<select ng-if="!isArray(value['name']) && value.isArray" ng-model='tempItem[key]'  class="form-control" multiple>
 						<option ng-repeat="option in options[value['name']] || options[key]  | optionsFilter:apiname:k:item"
-							value="{{option.id}}">{{option.id}}</option>				
+							value="{{option.id}}">{{option.id}} : {{option.name}}</option>				
 					</select>
 
 					<div class="input-group-addon text-center no-padding td-button td-button-add"

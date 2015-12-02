@@ -147,11 +147,11 @@ class RestController
 		}
 		return $ret;
     }
-   public static function getOptionsByEntityName($entityname)
+	/*public static function getOptionsByEntityName($entityname)
     {		
 		$service = static::$SERVICE;
 		return $service::getOptions($entityname);
-    }
+    }*/
 
 
   /***********************************/

@@ -79,6 +79,8 @@
 			"cloud" : "apiObject", 
 			"tenant" : "apiObject"
 		},
+		"list" : [ "user", "cloud","tenant" ],
+		"details" : [ "user", "cloud","tenant" ],
 		"tostring" : "user"
 	},
 	"communication" :  

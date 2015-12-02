@@ -122,6 +122,9 @@ class RestService
 			{
 				$apiObjects[$value] = [];
 				$temp = static::getSimpleAll($value);
+
+				$temp = Tools::convertToFields($temp,$entityname);
+
 				foreach ($temp  as $k => $val) 
 				{
 					$apiObjects[$value][$val->id] = $val;				
@@ -172,9 +175,8 @@ class RestService
     	}
 		return static::parseResults($result);
     }
-
-
-     public static function getOne($apiname,$val)
+	
+	public static function getOne($apiname,$val)
     {
     	$result = static::getSimpleOne($apiname,$val);
 		$fkList = static::getFKList($GLOBALS['currentobject']["form"]);

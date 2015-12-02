@@ -22,6 +22,7 @@
 /* Controllers */
 crudControllers.controller('AbstractDetailCtrl', function($rootScope,$scope,$location,$routeParams,ajaxFactory)
 {
+	$scope.debug = $routeParams.debug;
 	$scope.clearError();
 	$scope.apiname = $routeParams.apiname;
 

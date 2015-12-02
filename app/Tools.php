@@ -21,6 +21,18 @@
  */
 class Tools
 {
+
+
+    public static function convertToFields($currents,$currentApi)
+    {	
+		$items = [];
+    	foreach ($currents as $key => $value) 
+		{
+			$items[] = static::convertToField($value,$currentApi);	
+		}
+		return $items;
+    }
+
     public static function convertToField($current,$currentApi)
     {	
 		$item = new stdClass();
