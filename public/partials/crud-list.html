@@ -1,3 +1,9 @@
+<div ng-if="debug" class="panel panel-success"> 
+	<div ng-if="debug" class="panel-heading"> 
+	data : {{data}}<br>
+	</div>
+</div>
+<!--  -->
 <div>
     <div class="row">
 		<div class="col-md-12">
@@ -6,7 +12,7 @@
 	</div>
 	<div class="row">
 		<div>
-			<div ng-if="data && data!='null' && data.length">
+			<div ng-show="data && data!='null' && data.length">
 				<div >
 					View 
 					<select ng-model="viewby" ng-change="setItemsPerPage(viewby)">
@@ -109,7 +115,7 @@
 
 
 				
-			<div ng-if="data && data!='null' && data.length">
+			<div ng-show="data && data!='null' && data.length">
 				<div class="pagination-stuff">
 
 					<div >

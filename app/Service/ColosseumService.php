@@ -71,13 +71,11 @@ class ColosseumService extends RestService
 		http_response_code(intval($code));	
 		if($code=="400")
 		{
-
 			if(Tools::isJson($result))
 			{
 				$result = json_decode($result);
 				return $result->_empty_[0];
 			}
-
 		}
 	
 		$apiInfo = json_decode($result);

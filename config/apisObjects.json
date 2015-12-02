@@ -248,7 +248,8 @@
 				"type" : "apiObject",
 				"name" : "cloudCredential"
 			}
-		}
+		},
+		"tostring" : "name"
 	},
 	"operatingSystem" :  
 	{

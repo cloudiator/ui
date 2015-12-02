@@ -128,7 +128,6 @@ function include_all_javascript($folder)
 					</span>
 				</div>
 				<div class="container-fluid" ng-view class="view-frame"></div>
-
 			</div>
 		</div>
 	</body>

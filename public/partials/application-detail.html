@@ -1,3 +1,9 @@
+<div ng-if="debug" class="panel panel-success"> 
+	<div ng-if="debug" class="panel-heading"> 
+	item : {{item}}<br>
+	</div>
+</div>
+<!--  -->
 <h1>{{apiname}} : <span class="small">{{item.id}}</span></h1>
 <div class="text-right">
 	<div style="display : inline-block;" class="text-center no-padding td-button td-button-detail width-60" ng-click="list()">
@@ -174,7 +180,7 @@
 							        	<div ng-controller="emptyCtrl"
 							        			ng-init="	
 						        				thing = item.applicationComponentsById[item.portReqs[communication.requiredPort].applicationComponent];
-						        				
+						        				thing.isCollapsed = true;
 						        				vmt_removable=false;
 						        				comp_removable=false;"
 						        			ng-include=" 'md-vmt.htm' ">

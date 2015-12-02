@@ -24,6 +24,7 @@
 
 crudControllers.controller('CrudListCtrl', function($scope,$rootScope,$location,$routeParams,ajaxFactory)
 {
+	$scope.debug = $routeParams.debug;
 	$scope.setPage = function (pageNo) {
 		$scope.currentPage = pageNo;
 	};
