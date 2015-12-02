@@ -6,8 +6,7 @@
 	</div>
 	<div class="row">
 		<div>
-			<div ng-if="data && data!='null'">
-
+			<div ng-if="data && data!='null' && data.length">
 				<div >
 					View 
 					<select ng-model="viewby" ng-change="setItemsPerPage(viewby)">
@@ -21,97 +20,98 @@
 					</select> 
 					records at a time.
 				</div>
+			</div>
 
-				<table  class="table table-striped" style="border : 1px solid #ddd;">
-					<thead >
-						<tr>
-							<th ng-if="!arguments" ng-repeat="(key, value) in data[0]" ng-if=" key!='links'">
-								{{::key }}
-							</th>
-							<th ng-if="arguments" ng-repeat="value in arguments" ng-if=" key!='links'">
-								{{::value }}
-							</th>
-							<th class="text-center no-padding td-button td-button-add width-60"  colspan="3" >
-								<div ng-click="add()" 
-									data-toggle="tooltip" data-placement="top" title="new" tooltip>
-									<span ng-if="apiObjectHave('get')">
-										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-									</span>		
-								</div>							
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-
-
-
-						<tr ng-repeat="item in data.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+			<table  class="table table-striped" style="border : 1px solid #ddd;">
+				<thead >
+					<tr>
+						<th ng-if="!arguments" ng-repeat="(key, value) in data[0]" ng-if=" key!='links'">
+							{{::key }}
+						</th>
+						<th ng-if="arguments" ng-repeat="value in arguments" ng-if=" key!='links'">
+							{{::value }}
+						</th>
+						<th class="text-center no-padding td-button td-button-add width-60"  colspan="3" >
+							<div ng-click="add()" 
+								data-toggle="tooltip" data-placement="top" title="new" tooltip>
+								<span ng-if="apiObjectHave('get')">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								</span>		
+							</div>							
+						</th>
+					</tr>
+				</thead>
+				<tbody>
 
 
-							<td ng-if="!arguments" ng-repeat="(key, value) in item" ng-if="key!='links'">
-								<span ng-if="isObject(item[key])">
-									<a href="#/{{item[key].apiName}}/{{item[key].id}}">{{ item[key].name || item[key] }}</a>
-								</span>
-								<span ng-if="isArray(item[key])">
-									<ul class="list-inline" >
-										<li ng-repeat="(key2, value2) in item[key]">
-											<a href="#/{{value2.apiName}}/{{value2.id}}">{{ value2.name || value2}}</a><span ng-if="!$last">,</span>
-										</li>
-									</ul>
-								</span>
-								<span ng-if="!isObject(item[key]) && !isArray(item[key])">
-									{{ item[key] }}
-								</span>
-							</td>	
 
-							
-							<td ng-if="arguments" ng-repeat="key in arguments" ng-if="key!='links'">
-								<span ng-if="isObject(item[key])">
-									<a href="#/{{item[key].apiName}}/{{item[key].id}}">{{ item[key].name || item[key] }}</a>
-								</span>
-								<span ng-if="isArray(item[key])">
-									<ul class="list-inline" >
-										<li ng-repeat="(key2, value2) in item[key]">
-											<a href="#/{{value2.apiName}}/{{value2.id}}">{{ value2.name || value2}}</a>
-										</li>
-									</ul>
-								</span>
-								<span ng-if="!isObject(item[key]) && !isArray(item[key])">
-									{{ item[key] }}
-								</span>
-							 </td>
+					<tr ng-repeat="item in data.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
 
 
-							<td class="text-center no-padding td-button td-button-detail width-60" ng-click="see(item)">
-								<div data-toggle="tooltip" data-placement="top" title="details" tooltip>
-									<span ng-if="apiObjectHave('get')">
-										<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
-									</span>	
-								</div>							
-							</td>
-							<td class="text-center no-padding td-button td-button-edit width-60" ng-click="edit(item)">
-								<div data-toggle="tooltip" data-placement="top" title="edit" tooltip>
-									<span ng-if="apiObjectHave('put')">
-										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-									</span>		
-								</div>			
-							</td>
-							<td class="text-center no-padding td-button td-button-delete width-60" ng-click="del(item)">
-								<div data-toggle="tooltip" data-placement="top" title="delete" tooltip>
-									<span ng-if="apiObjectHave('del')">
-										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-									</span>	
-								</div>					
-							</td>
-						</tr>
-					</tbody>
-				</table>
+						<td ng-if="!arguments" ng-repeat="(key, value) in item" ng-if="key!='links'">
+							<span ng-if="isObject(item[key])">
+								<a href="#/{{item[key].apiName}}/{{item[key].id}}">{{ item[key].name || item[key] }}</a>
+							</span>
+							<span ng-if="isArray(item[key])">
+								<ul class="list-inline" >
+									<li ng-repeat="(key2, value2) in item[key]">
+										<a href="#/{{value2.apiName}}/{{value2.id}}">{{ value2.name || value2}}</a><span ng-if="!$last">,</span>
+									</li>
+								</ul>
+							</span>
+							<span ng-if="!isObject(item[key]) && !isArray(item[key])">
+								{{ item[key] }}
+							</span>
+						</td>	
+
+						
+						<td ng-if="arguments" ng-repeat="key in arguments" ng-if="key!='links'">
+							<span ng-if="isObject(item[key])">
+								<a href="#/{{item[key].apiName}}/{{item[key].id}}">{{ item[key].name || item[key] }}</a>
+							</span>
+							<span ng-if="isArray(item[key])">
+								<ul class="list-inline" >
+									<li ng-repeat="(key2, value2) in item[key]">
+										<a href="#/{{value2.apiName}}/{{value2.id}}">{{ value2.name || value2}}</a>
+									</li>
+								</ul>
+							</span>
+							<span ng-if="!isObject(item[key]) && !isArray(item[key])">
+								{{ item[key] }}
+							</span>
+						 </td>
 
 
+						<td class="text-center no-padding td-button td-button-detail width-60" ng-click="see(item)">
+							<div data-toggle="tooltip" data-placement="top" title="details" tooltip>
+								<span ng-if="apiObjectHave('get')">
+									<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+								</span>	
+							</div>							
+						</td>
+						<td class="text-center no-padding td-button td-button-edit width-60" ng-click="edit(item)">
+							<div data-toggle="tooltip" data-placement="top" title="edit" tooltip>
+								<span ng-if="apiObjectHave('put')">
+									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+								</span>		
+							</div>			
+						</td>
+						<td class="text-center no-padding td-button td-button-delete width-60" ng-click="del(item)">
+							<div data-toggle="tooltip" data-placement="top" title="delete" tooltip>
+								<span ng-if="apiObjectHave('del')">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</span>	
+							</div>					
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+				
+			<div ng-if="data && data!='null' && data.length">
 				<div class="pagination-stuff">
 
-
-				    
 					<div >
 						<pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" num-pages="numPages"></pagination>
 					</div>
@@ -124,6 +124,7 @@
 				    <hr/>
 				</div>
 			</div>
+
 			<div class="text-center" ng-if="data=='null'">
 				No {{apiname}} entries 
 				<div class="text-center no-padding td-button td-button-add width-60"  style="margin : auto;">
