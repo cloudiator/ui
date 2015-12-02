@@ -115,7 +115,7 @@
 
 body
 {
-	background : #999 !important;
+	background : #fff !important;
     /* margin: 1px; prevent bootstrap bug (several data point tooltip do not show theme-self), bug with sb_admin.css */
 }
 

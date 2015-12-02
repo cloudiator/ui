@@ -51,7 +51,7 @@ class RestRouter
 		Route::post('login', 		$controller.'::login',		$routes,$request_type);
 		Route::get('login', 		$controller.'::isLogged',		$routes,$request_type);
 		Route::any('logout', 		$controller.'::logout',		$routes,$request_type);
-		Route::get('{}/options', 	$controller.'::getOptionsByEntityName',	$routes,$request_type);
+		//Route::get('{}/options', 	$controller.'::getOptionsByEntityName',	$routes,$request_type);
 		Route::post('options', 		$controller.'::getOptions',	$routes,$request_type);
 		Route::post('{}', 			$controller.'::createOne',	$routes,$request_type);
 		Route::delete('{}/{}', 		$controller.'::deleteOne',	$routes,$request_type);
