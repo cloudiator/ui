@@ -4,11 +4,11 @@
 		"group" : 
 		[
 			{"apiObject" : "application"},
+			{"apiObject" : "applicationInstance"},
+			{"apiObject" : "virtualMachine"},
 			{"apiObject" : "instance"},
 			{"apiObject" : "component"},
-			{"apiObject" : "ipAddress","name" : "ip address"},
-			{"apiObject" : "virtualMachine"},
-			{"apiObject" : "applicationInstance"}
+			{"apiObject" : "ipAddress","name" : "ip address"}
 		]
 	},
 	{
