@@ -9,7 +9,7 @@ It also display graphs by VirtualMachine, these graphs are provided by the Kairo
 1. Install all dependencies to the project : php5-common, libapache2-mod-php5, php5-cli and apache2
 ```
 sudo apt-get update
-sudo apt-get install php5-common libapache2-mod-php5 php5-cli apache2
+sudo apt-get install php5-common libapache2-mod-php5 php5-cli php5-curl apache2
 ```
 2. get the project repository in your web folder (/var/www/html)
 ```
