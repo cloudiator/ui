@@ -3,8 +3,9 @@
 	"flowOperator" : ["MAP","REDUCE"],
 	"ipType" : ["PUBLIC","PRIVATE"],
 	"locationScope" : ["REGION","ZONE","HOST"],
-	"operatingSystemArchitecture" : ["I386","AMD64"],
+	"operatingSystemArchitecture" : ["I386","AMD64","UNKNOWN"],
 	"operatingSystemVendorType" : ["NIX","WINDOWS"],
+    "operatingSystemFamily": ["UNKNOWN", "AIX", "ARCH", "CENTOS", "DARWIN", "DEBIAN", "ESX", "FEDORA", "FREEBSD", "GENTOO", "HPUX", "COREOS", "AMZN_LINUX", "MANDRIVA", "NETBSD", "OEL", "OPENBSD", "RHEL", "SCIENTIFIC", "CEL", "SLACKWARE", "SOLARIS", "SUSE", "TURBOLINUX","CLOUD_LINUX","UBUNTU","WINDOWS"],
 	"sensors" : [
 		"de.uniulm.omi.cloudiator.visor.sensors.CpuUsageSensor",
 		"de.uniulm.omi.cloudiator.visor.sensors.MemoryUsageSensor",

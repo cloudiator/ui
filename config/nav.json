@@ -1,59 +1,106 @@
 [
-	{
-		"name" : "Dashboard", 
-		"group" : 
-		[
-			{"apiObject" : "application"},
-			{"apiObject" : "applicationInstance"},
-			{"apiObject" : "virtualMachine"},
-			{"apiObject" : "instance"},
-			{"apiObject" : "component"},
-			{"apiObject" : "ipAddress","name" : "ip address"}
-		]
-	},
-	{
-		"name" : "Monitors", 
-		"group" : 
-		[
-			{"apiObject" : "monitorInstance"},
-			{"apiObject" : "rawMonitor"},
-			{"apiObject" : "composedMonitor"},
-			{"apiObject" : "constantMonitor"}
-		]
-	},
-	{
-		"name" : "Configuration" , 
-		"group" : 
-		[
-			{"apiObject" : "frontendUser"},
-			{"apiObject" : "tenant"},
-			{"apiObject" : "cloudCredential"}
-		]
-	},
-	{
-		"name" : "Cloud", 
-		"group" : 
-		[
-			{"apiObject" : "cloud"},
-			{"apiObject" : "api"},
-			{"apiObject" : "image"},
-			{"apiObject" : "operatingSystem"},
-			{"apiObject" : "operatingSystemVendor"},
-			{"apiObject" : "hardware"},
-			{"apiObject" : "hardwareOffer"},
-			{"apiObject" : "location"},
-			{"apiObject" : "geoLocation"}
-		]
-	},
-	{
-		"name" : "Other", 
-		"group" : 
-		[
-			{"apiObject" : "virtualMachineTemplate"},
-			{"apiObject" : "applicationComponent"},
-			{"apiObject" : "communication"},
-			{"apiObject" : "requiredPort"},
-			{"apiObject" : "providedPort"}
-		]
-	}
+  {
+    "name": "Application",
+    "group": [
+      {
+        "apiObject": "application"
+      },
+      {
+        "apiObject": "component"
+      },
+      {
+        "apiObject": "virtualMachineTemplate"
+      },
+      {
+        "apiObject": "applicationComponent"
+      },
+      {
+        "apiObject": "communication"
+      },
+      {
+        "apiObject": "requiredPort"
+      },
+      {
+        "apiObject": "providedPort"
+      }
+    ]
+  },
+  {
+    "name": "Instance",
+    "group": [
+      {
+        "apiObject": "applicationInstance"
+      },
+      {
+        "apiObject": "virtualMachine"
+      },
+      {
+        "apiObject": "instance"
+      },
+      {
+        "apiObject": "ipAddress",
+        "name": "ip address"
+      }
+    ]
+  },
+  {
+    "name": "Monitoring",
+    "group": [
+      {
+        "apiObject": "monitorInstance"
+      },
+      {
+        "apiObject": "rawMonitor"
+      },
+      {
+        "apiObject": "composedMonitor"
+      },
+      {
+        "apiObject": "constantMonitor"
+      }
+    ]
+  },
+  {
+    "name": "Cloud",
+    "group": [
+      {
+        "apiObject": "cloud"
+      },
+      {
+        "apiObject": "api"
+      },
+      {
+        "apiObject": "cloudCredential"
+      },
+      {
+        "apiObject": "image"
+      },
+      {
+        "apiObject": "operatingSystem"
+      },
+      {
+        "apiObject": "hardware"
+      },
+      {
+        "apiObject": "hardwareOffer"
+      },
+      {
+        "apiObject": "location"
+      },
+      {
+        "apiObject": "geoLocation"
+      }
+    ]
+  },
+  {
+    "name": "Configuration",
+    "group": [
+      {
+        "apiObject": "frontendUser"
+      },
+      {
+        "apiObject": "tenant"
+      }
+    ]
+  }
 ]

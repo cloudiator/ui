@@ -262,24 +262,13 @@
 				"type" : "enum", 
 				"name" : "operatingSystemArchitecture"
 			},
-			"operatingSystemVendor" : "apiObject",
+			"operatingSystemFamily" :
+			{
+				"type" : "enum",
+				"name" : "operatingSystemFamily"
+			},
 			"version" : "string"
 		}
-	},
-	"operatingSystemVendor" :  
-	{
-		"api" : "colosseumapi",
-		"entityName" : "osVendor",
-		"form" :
-		{
-			"name" : "string",
-			"operatingSystemVendorType" : 
-			{ 
-				"type" : "enum", 
-				"name" : "operatingSystemVendorType"
-			}
-		},
-		"tostring" : "name"
 	},
 	"providedPort" :  
 	{
